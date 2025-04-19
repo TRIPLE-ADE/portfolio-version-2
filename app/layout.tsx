@@ -67,7 +67,6 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="dark"
           enableSystem
-          disableTransitionOnChange
         >
           <SmoothScrollProvider>
             <div className="relative min-h-screen">

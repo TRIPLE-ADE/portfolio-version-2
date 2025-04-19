@@ -21,7 +21,7 @@ export function Reveal({
   },
 }: RevealProps) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const isInView = useInView(ref, { once: true })
   const controls = useAnimation()
 
   useEffect(() => {

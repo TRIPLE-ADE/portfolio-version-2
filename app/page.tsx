@@ -8,7 +8,7 @@ const ContactSection = dynamic(() => import("@/components/contact").then((mod) =
 
 export default function Home() {
   return (
-    <div className="flex items-center justify-center flex-col gap-20 pb-20">
+    <div className="flex items-center justify-center flex-col">
       <HeroSection />
       <AboutSection />
       <SkillsSection />

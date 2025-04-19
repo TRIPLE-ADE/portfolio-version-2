@@ -12,14 +12,14 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="flex min-h-screen w-full items-center overflow-hidden justify-center py-16"
+      className="flex min-h-screen w-full items-center overflow-hidden justify-center"
     >
-      <div className="container mx-auto relative px-4 max-w-6xl grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <div className="container mx-auto relative px-4 max-w-6xl grid items-center gap-6 lg:grid-cols-2">
         <CardContainer className="inter-var">
-          <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
+          <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl border">
             <CardItem translateZ="100" className="w-full mt-4">
               <Image
-                src="/rasheed.PNG"
+                src="/rasheednw.PNG"
                 alt="Profile"
                 height="1000"
                 width="1000"
@@ -29,14 +29,14 @@ export function AboutSection() {
             </CardItem>
           </CardBody>
         </CardContainer>
-        <div className="flex flex-col justify-center space-y-8">
+        <div className="flex flex-col text-justify justify-center p-4 lg:p-0 space-y-8 z-10">
           <Reveal>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
               About Me
             </h2>
           </Reveal>
 
-          <div className="space-y-4">
+          <div className="space-y-4 pr-4 pb-4 rounded-lg bg-transparent backdrop-blur-2xl lg:backdrop-blur-none">
             <Reveal>
               <p className="text-lg text-muted-foreground">
                 I am a passionate software developer with a deep interest in
