@@ -23,7 +23,7 @@ export default function BlogPreviewSection({ posts }: { posts: BlogPost[] }) {
           <h2 className="text-4xl font-bold tracking-tight sm:text-5xl bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
             Latest Articles
           </h2>
-          <p className="mt-4 text-muted-foreground">Thoughts and insights on web development, design, and technology</p>
+          <p className="mt-4 text-muted-foreground">Thoughts and insights on software development, design, technology, AI tools and practical engineering tips.</p>
         </motion.div>
 
         <div className="mt-16">
