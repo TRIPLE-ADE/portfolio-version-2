@@ -12,6 +12,8 @@ const navItems = [
   { name: "Home", section: "hero" },
   { name: "About", section: "about" },
   { name: "Skills", section: "skills" },
+  { name: "Blog", section: "blog" },
+  // { name: "Projects", section: "projects" },
   { name: "Contact", section: "contact" },
 ];
 
@@ -128,16 +130,16 @@ export function Navbar() {
               <button
                 key={item.section}
                 onClick={() => scrollToSection(item.section)}
-                className={`relative text-sm font-medium transition-colors hover:text-primary ${
+                className={`relative text-sm font-medium transition-colors hover:text-muted-foreground ${
                   activeSection === item.section && isHomePage
-                    ? "text-primary"
-                    : "text-muted-foreground"
+                    ? "text-muted-foreground"
+                    : "text-primary"
                 }`}
               >
                 {item.name}
                 {activeSection === item.section && isHomePage && (
                   <motion.span
-                    className="absolute bottom-0 left-0 h-[2px] w-full bg-primary"
+                    className="absolute bottom-0 left-0 h-[2px] w-full bg-muted-foreground"
                     layoutId="activeSection"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
