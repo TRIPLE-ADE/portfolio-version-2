@@ -3,7 +3,6 @@
 // The GraphQL endpoint for Hashnode API v2
 const HASHNODE_API = "https://gql.hashnode.com";
 
-// Your Hashnode username
 const HASHNODE_USERNAME = "tripletech";
 
 export type BlogPost = {
