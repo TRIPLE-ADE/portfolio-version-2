@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/reveal";
 import { ViewIcon } from "lucide-react";
@@ -39,27 +38,19 @@ export function AboutSection() {
           <div className="space-y-4 pr-4 pb-4 rounded-lg bg-transparent backdrop-blur-2xl lg:backdrop-blur-none">
             <Reveal>
               <p className="text-lg text-muted-foreground">
-                I am a passionate software developer with a deep interest in
-                building innovative and user-centric applications.
+                I am a results-driven Software Engineer with a focus on engineering high-performance web solutions that drive business value and solve complex technical challenges.
               </p>
             </Reveal>
 
             <Reveal>
               <p className="text-lg text-muted-foreground">
-                With experiences crafting modern UIs using React, React Native,
-                Next.js, and TypeScript, I focus on creating interfaces that are
-                fast, clean, and scalable. I also love turning complex technical
-                concepts into clear, developer-friendly content.
+                With expertise in React, Next.js, and TypeScript, I build scalable architectures and intuitive interfaces that bridge the gap between business objectives and user needs. My approach combines technical excellence with a deep understanding of product growth.
               </p>
             </Reveal>
 
             <Reveal>
               <p className="text-lg text-muted-foreground">
-                Lately, I’ve been focusing on building AI-driven applications
-                that can enhance user experiences and provide intelligent
-                insights. Whether it's for personalized recommendations,
-                simplifying complex workflow or automation, I'm exploring ways
-                to integrate AI in everyday tools.
+                Currently, I am leveraging AI and LLMs to build intelligent automation tools and data-driven applications that enhance productivity and provide actionable insights for modern enterprises.
               </p>
             </Reveal>
           </div>
@@ -68,7 +59,7 @@ export function AboutSection() {
               className="inline-flex items-center gap-2"
               onClick={() =>
                 window.open(
-                  "/Abdulrasheed_Abdulsalam_Software_Engineering_Resume.pdf"
+                  "/Abdulrasheed_Abdulsalam_Software_Engineer.pdf"
                 )
               }
               variant="outline"

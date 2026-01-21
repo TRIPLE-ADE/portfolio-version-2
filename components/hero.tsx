@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { GithubIcon, LinkedinIcon, Mail } from "lucide-react";
@@ -61,7 +61,7 @@ export function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                Building Clean, Scalable Software That Solves Real Problems
+                Engineering Digital Experiences That Solve Problems & Drive Growth
               </motion.h1>
 
               <motion.p
@@ -70,12 +70,7 @@ export function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                I'm a Software Engineer specializing in building fast,
-                accessible, and scalable applications using{" "}
-                <strong>React</strong>, <strong>Next.js</strong>, and{" "}
-                <strong>TypeScript</strong>. I write clear technical
-                documentation and contribute to developer communities bridging
-                code, clarity, and connection.
+                I am a Software Engineer dedicated to solving complex technical challenges. I build scalable, high-performance applications that transform ideas into impactful business solutions.
               </motion.p>
 
               <motion.p
@@ -100,7 +95,7 @@ export function HeroSection() {
                     aria-label="View Resume"
                     onClick={() =>
                       window.open(
-                        "/Abdulrasheed_Abdulsalam_Software_Engineering_Resume.pdf"
+                        "/Abdulrasheed_Abdulsalam_Software_Engineer.pdf"
                       )
                     }
                   >
@@ -131,7 +126,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Building Clean, Scalable Software That Solves Real Problems
+            Engineering Digital Experiences That Solve Problems & Drive Growth
           </motion.h1>
 
           <motion.p
@@ -140,11 +135,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            I'm a Software Engineer specializing in building fast, accessible,
-            and scalable applications using <strong>React</strong>,{" "}
-            <strong>Next.js</strong>, and <strong>TypeScript</strong>. I write
-            clear technical documentation and contribute to developer
-            communities—bridging code, clarity, and connection.
+            I am a Software Engineer dedicated to solving complex technical challenges. I build scalable, high-performance applications that transform ideas into impactful business solutions.
           </motion.p>
 
           <motion.p
@@ -170,7 +161,7 @@ export function HeroSection() {
                 aria-label="View Resume"
                 onClick={() =>
                   window.open(
-                    "/Abdulrasheed_Abdulsalam_Software_Engineering_Resume.pdf"
+                    "/Abdulrasheed_Abdulsalam_Software_Engineer.pdf"
                   )
                 }
               >
@@ -237,7 +228,7 @@ const SocialIcon = ({ href, ariaLabel, icon }: SocialIconProps) => {
         rel="noopener noreferrer"
         target="_blank"
         aria-label={ariaLabel}
-        className="block text-muted-foreground hover:text-primary transition-colors"
+        className="block text-muted-foreground  transition-colors"
       >
         <motion.div variants={iconAnimation}>{icon}</motion.div>
       </Link>

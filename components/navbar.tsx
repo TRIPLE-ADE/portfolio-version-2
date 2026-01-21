@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { Home, Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
@@ -11,9 +11,9 @@ import { usePathname } from "next/navigation";
 const navItems = [
   { name: "Home", section: "hero" },
   { name: "About", section: "about" },
+  { name: "Projects", section: "projects" },
   { name: "Skills", section: "skills" },
   { name: "Blog", section: "blog" },
-  // { name: "Projects", section: "projects" },
   { name: "Contact", section: "contact" },
 ];
 
@@ -107,9 +107,8 @@ export function Navbar() {
 
   return (
     <motion.header
-      className={`fixed flex items-center justify-center z-50 w-full backdrop-blur-lg ${
-        isScrolled ? "bg-background/90 backdrop-blur-lg" : "bg-transparent"
-      } transition-all duration-300`}
+      className={`fixed flex items-center justify-center z-50 w-full backdrop-blur-lg ${isScrolled ? "bg-background/90 backdrop-blur-lg" : "bg-transparent"
+        } transition-all duration-300`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.3 }}
@@ -130,11 +129,10 @@ export function Navbar() {
               <button
                 key={item.section}
                 onClick={() => scrollToSection(item.section)}
-                className={`relative text-sm font-medium transition-colors hover:text-muted-foreground ${
-                  activeSection === item.section && isHomePage
-                    ? "text-muted-foreground"
-                    : "text-primary"
-                }`}
+                className={`relative text-sm font-medium transition-colors hover:text-muted-foreground ${activeSection === item.section && isHomePage
+                  ? "text-muted-foreground"
+                  : "text-primary"
+                  }`}
               >
                 {item.name}
                 {activeSection === item.section && isHomePage && (
@@ -194,11 +192,10 @@ export function Navbar() {
                         scrollToSection(item.section);
                         setIsOpen(false);
                       }}
-                      className={`text-left text-sm font-medium transition-colors hover:text-primary ${
-                        activeSection === item.section && isHomePage
-                          ? "text-primary"
-                          : "text-muted-foreground"
-                      }`}
+                      className={`text-left text-sm font-medium transition-colors hover:text-primary ${activeSection === item.section && isHomePage
+                        ? "text-primary"
+                        : "text-muted-foreground"
+                        }`}
                     >
                       {item.name}
                     </button>

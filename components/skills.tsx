@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import {
   Blocks,
   Component,
@@ -12,6 +12,7 @@ import {
   Globe,
   Server,
   Code2,
+  Smartphone,
 } from "lucide-react";
 import { Card } from "./ui/card";
 import { GlowingEffect } from "./ui/glowing-effect";
@@ -47,11 +48,29 @@ const skills = [
     ],
   },
   {
+    name: "Expo / React Native",
+    category: "Mobile",
+    icon: Smartphone,
+    technologies: ["Cross-Platform", "iOS/Android", "EAS Build", "Native Modules"],
+  },
+  // {
+  //   name: "Golang",
+  //   category: "Backend",
+  //   icon: Code2,
+  //   technologies: ["Goroutines", "Gin/Echo", "Microservices", "gRPC"],
+  // },
+  {
+    name: "PHP",
+    category: "Backend",
+    icon: Server,
+    technologies: ["Laravel", "Rest API", "Composer", "Livewire"],
+  },
+  {
     name: "Backend Platforms",
     category: "Backend",
     icon: Library,
     technologies: ["Supabase", "Appwrite", "Strapi"],
-  },  
+  },
   {
     name: "Development Tools",
     category: "Tools",
@@ -72,7 +91,7 @@ const skills = [
   },
 ];
 
-const categories = ["Frontend", "Backend", "Tools"];
+const categories = ["Frontend", "Mobile", "Backend", "Tools"];
 
 export function SkillsSection() {
   return (
@@ -92,7 +111,7 @@ export function SkillsSection() {
             Skills & Expertise
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Crafting modern, performant, and user-friendly web experiences
+            Developing robust, scalable technical foundations that power business growth and digital transformation.
           </p>
         </motion.div>
 
