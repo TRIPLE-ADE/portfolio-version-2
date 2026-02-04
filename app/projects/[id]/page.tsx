@@ -8,6 +8,7 @@ import { ArrowLeft, Github, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { ProjectVideoPlayer } from "@/components/project-video-player";
 
 export default function ProjectDetailPage() {
     const params = useParams();
@@ -44,14 +45,9 @@ export default function ProjectDetailPage() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="relative aspect-square md:aspect-square rounded-3xl overflow-hidden shadow-2xl border border-white/10"
+                    className="relative aspect-video md:aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-black"
                 >
-                    <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover"
-                    />
+                    <ProjectVideoPlayer project={project} isActive={true} />
                 </motion.div>
 
                 <motion.div
