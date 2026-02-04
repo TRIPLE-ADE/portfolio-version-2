@@ -1,3 +1,4 @@
+import { cache } from "react";
 // Hashnode API utilities
 
 // The GraphQL endpoint for Hashnode API v2
@@ -25,7 +26,7 @@ export type BlogPost = {
 /* Fetch blog posts from Hashnode
  * @param limit Optional number of posts to fetch (default: 20)
  */
-export async function fetchBlogPosts(limit: number = 20, after = null) {
+export const fetchBlogPosts = cache(async (limit: number = 20, after = null) => {
   const query = `
     query GetUserArticles($host: String!, $first: Int!, $after: String) {
       publication(host: $host) {
@@ -130,12 +131,12 @@ export async function fetchBlogPosts(limit: number = 20, after = null) {
       totalPosts: 0,
     };
   }
-}
+});
 
 /**
  * Fetch a single blog post by slug
  */
-export async function fetchBlogPost(slug: string) {
+export const fetchBlogPost = cache(async (slug: string) => {
   console.log("Fetching blog post with slug:", slug);
   // Updated query for Hashnode API v2
   const query = `
@@ -210,4 +211,4 @@ export async function fetchBlogPost(slug: string) {
     console.error("Error fetching blog post:", error);
     throw error;
   }
-}
+});
