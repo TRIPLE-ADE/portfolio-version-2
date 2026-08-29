@@ -43,7 +43,13 @@ export default function ProjectDetailPage() {
           animate={{ opacity: 1, y: 0 }}
           className="relative aspect-square md:aspect-square rounded-3xl overflow-hidden shadow-2xl border border-white/10"
         >
-          <Image src={project.image} alt={project.title} fill className="object-cover" />
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover"
+          />
         </motion.div>
 
         <motion.div

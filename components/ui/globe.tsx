@@ -12,6 +12,17 @@ export const Globe = ({ className }: { className?: string }) => {
   useEffect(() => {
     if (!canvasRef.current) return;
 
+    const gl =
+      canvasRef.current.getContext("webgl2") ||
+      (canvasRef.current.getContext("webgl") as WebGLRenderingContext | null);
+
+    if (gl) {
+      const maxAttribs = gl.getParameter(gl.MAX_VERTEX_ATTRIBS) || 16;
+      for (let i = 0; i < maxAttribs; i++) {
+        gl.disableVertexAttribArray(i);
+      }
+    }
+
     let animFrameId: number;
 
     const globe = createGlobe(canvasRef.current, {
@@ -35,6 +46,12 @@ export const Globe = ({ className }: { className?: string }) => {
     });
 
     const render = () => {
+      if (gl) {
+        const maxAttribs = gl.getParameter(gl.MAX_VERTEX_ATTRIBS) || 16;
+        for (let i = 1; i < maxAttribs; i++) {
+          gl.disableVertexAttribArray(i);
+        }
+      }
       const currentPhi = phi.current + pointerInteractionMovement.current;
       globe.update({ phi: currentPhi });
       if (pointerInteracting.current === null) {
@@ -47,6 +64,12 @@ export const Globe = ({ className }: { className?: string }) => {
 
     return () => {
       cancelAnimationFrame(animFrameId);
+      if (gl) {
+        const maxAttribs = gl.getParameter(gl.MAX_VERTEX_ATTRIBS) || 16;
+        for (let i = 0; i < maxAttribs; i++) {
+          gl.disableVertexAttribArray(i);
+        }
+      }
       globe.destroy();
     };
   }, []);

@@ -35,16 +35,7 @@ export const MaskContainer = ({
   let maskSize = isHovered ? revealSize : size;
 
   return (
-    <motion.div
-      ref={containerRef}
-      className={cn("relative h-screen w-full", className)}
-      animate={{
-        backgroundColor: isHovered ? "var(--slate-900)" : "var(--white)",
-      }}
-      transition={{
-        backgroundColor: { duration: 0.3 },
-      }}
-    >
+    <div ref={containerRef} className={cn("relative h-screen w-full bg-transparent", className)}>
       <motion.div
         className="absolute flex h-full w-full items-center justify-center bg-black text-6xl [mask-image:url(/mask.svg)] [mask-repeat:no-repeat] [mask-size:40px] dark:bg-white"
         animate={{
@@ -71,6 +62,6 @@ export const MaskContainer = ({
       </motion.div>
 
       <div className="flex h-full w-full items-center justify-center">{revealText}</div>
-    </motion.div>
+    </div>
   );
 };
