@@ -29,12 +29,16 @@ export default function ProjectDetailPage() {
   return (
     <main className="min-h-screen py-24 px-6 max-w-4xl mx-auto">
       <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="mb-12">
-        <Link href="/#projects">
-          <Button variant="ghost" className="gap-2 -ml-4 text-muted-foreground hover:text-primary">
-            <ArrowLeft className="w-4 h-4" />
+        <Button
+          asChild
+          variant="ghost"
+          className="gap-2 -ml-4 text-muted-foreground hover:text-primary"
+        >
+          <Link href="/#projects" aria-label="Back to Projects section">
+            <ArrowLeft className="w-4 h-4" aria-hidden="true" />
             Back to Projects
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 items-center">
@@ -75,20 +79,30 @@ export default function ProjectDetailPage() {
           </p>
           <div className="flex flex-wrap gap-4">
             {project.link && (
-              <a href={project.link} target="_blank" rel="noopener noreferrer">
-                <Button className="gap-2 shadow-lg rounded-full px-8">
-                  <ExternalLink className="w-4 h-4" />
+              <Button asChild className="gap-2 shadow-lg rounded-full px-8">
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`View live demo of ${project.title} (opens in new tab)`}
+                >
+                  <ExternalLink className="w-4 h-4" aria-hidden="true" />
                   Live Demo
-                </Button>
-              </a>
+                </a>
+              </Button>
             )}
             {project.github && (
-              <a href={project.github} target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="gap-2 rounded-full px-8 shadow-sm">
-                  <Github className="w-4 h-4" />
+              <Button asChild variant="outline" className="gap-2 rounded-full px-8 shadow-sm">
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`View ${project.title} source code on GitHub (opens in new tab)`}
+                >
+                  <Github className="w-4 h-4" aria-hidden="true" />
                   Source Code
-                </Button>
-              </a>
+                </a>
+              </Button>
             )}
           </div>
         </motion.div>

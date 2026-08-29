@@ -66,18 +66,33 @@ export function ProjectsSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                   <div className="flex gap-3">
                     {project.github && (
-                      <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Button size="icon" variant="secondary" className="rounded-full shadow-lg">
-                          <Github className="w-4 h-4" />
-                        </Button>
-                      </a>
+                      <Button
+                        asChild
+                        size="icon"
+                        variant="secondary"
+                        className="rounded-full shadow-lg"
+                      >
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`View ${project.title} source code on GitHub (opens in new tab)`}
+                        >
+                          <Github className="w-4 h-4" aria-hidden="true" />
+                        </a>
+                      </Button>
                     )}
                     {project.link && (
-                      <a href={project.link} target="_blank" rel="noopener noreferrer">
-                        <Button size="icon" className="rounded-full shadow-lg">
-                          <ExternalLink className="w-4 h-4" />
-                        </Button>
-                      </a>
+                      <Button asChild size="icon" className="rounded-full shadow-lg">
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`View live demo of ${project.title} (opens in new tab)`}
+                        >
+                          <ExternalLink className="w-4 h-4" aria-hidden="true" />
+                        </a>
+                      </Button>
                     )}
                   </div>
                 </div>
@@ -95,7 +110,10 @@ export function ProjectsSection() {
                     </span>
                   ))}
                 </div>
-                <Link href={`/projects/${project.id}`}>
+                <Link
+                  href={`/projects/${project.id}`}
+                  aria-label={`View case study for ${project.title}`}
+                >
                   <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors cursor-pointer">
                     {project.title}
                   </h3>
@@ -103,17 +121,20 @@ export function ProjectsSection() {
                 <p className="text-muted-foreground text-sm line-clamp-3 mb-6">
                   {project.description}
                 </p>
-                <Link
-                  href={`/projects/${project.id}`}
-                  className="mt-auto opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
-                >
+                <div className="mt-auto">
                   <Button
+                    asChild
                     variant="link"
-                    className="p-0 h-auto text-primary font-semibold hover:gap-2 transition-all"
+                    className="p-0 h-auto text-primary font-semibold hover:gap-2 transition-all opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
                   >
-                    View Full Case Study <ArrowUpRight />
+                    <Link
+                      href={`/projects/${project.id}`}
+                      aria-label={`View full case study for ${project.title}`}
+                    >
+                      View Full Case Study <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                    </Link>
                   </Button>
-                </Link>
+                </div>
               </div>
             </Card>
           </motion.div>

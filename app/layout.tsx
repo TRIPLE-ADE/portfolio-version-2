@@ -58,12 +58,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={lato.className}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:shadow-lg focus:outline-hidden focus:ring-2 focus:ring-ring"
+        >
+          Skip to main content
+        </a>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <SmoothScrollProvider>
             <div className="relative min-h-screen">
               <Navbar />
               <ScrollProgress />
-              <main>{children}</main>
+              <main id="main-content">{children}</main>
               <Footer />
             </div>
           </SmoothScrollProvider>

@@ -44,6 +44,17 @@ export function Navbar() {
   }, [pathName, isHomePage]);
 
   React.useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && isOpen) {
+        setIsOpen(false);
+        buttonRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
+  React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         isOpen &&
@@ -119,6 +130,7 @@ export function Navbar() {
       <div className="container flex h-20 items-center justify-between px-4">
         <Link
           href={"/"}
+          aria-label="Rasheed - Go to Homepage"
           className="hidden uppercase md:block text-xl tracking-tighter font-bold text-primary"
           onClick={() => isHomePage && scrollToSection("hero")}
         >
@@ -126,7 +138,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden space-x-6 md:flex">
+        <nav className="hidden space-x-6 md:flex" aria-label="Primary navigation">
           {isHomePage &&
             navItems.map((item) => (
               <button
@@ -153,19 +165,31 @@ export function Navbar() {
         {/* Mobile Navigation */}
         <div className="md:hidden">
           {pathName.length > 1 ? (
-            <Link href={"/"}>
-              <Home className="h-5 w-5" />
+            <Link href={"/"} aria-label="Go to Homepage">
+              <Home className="h-5 w-5" aria-hidden="true" />
             </Link>
           ) : (
-            <Button ref={buttonRef} variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)}>
+            <Button
+              ref={buttonRef}
+              variant="ghost"
+              size="icon"
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-nav"
+              onClick={() => setIsOpen(!isOpen)}
+            >
               <motion.div
                 key={isOpen as unknown as string}
                 initial={{ opacity: 0, rotate: isOpen ? 90 : -90 }}
                 animate={{ opacity: 1, rotate: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-                <span className="sr-only">Toggle menu</span>
+                {isOpen ? (
+                  <X className="h-5 w-5" aria-hidden="true" />
+                ) : (
+                  <Menu className="h-5 w-5" aria-hidden="true" />
+                )}
+                <span className="sr-only">{isOpen ? "Close menu" : "Open menu"}</span>
               </motion.div>
             </Button>
           )}
@@ -173,6 +197,8 @@ export function Navbar() {
             {isOpen && (
               <motion.nav
                 ref={menuRef}
+                id="mobile-nav"
+                aria-label="Mobile navigation"
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
@@ -207,6 +233,7 @@ export function Navbar() {
           variant="ghost"
           size="icon"
           className="ml-auto md:ml-0"
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
           {mounted ? (
@@ -216,7 +243,11 @@ export function Navbar() {
               animate={{ opacity: 1, rotate: 0 }}
               transition={{ duration: 0.3 }}
             >
-              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              {theme === "dark" ? (
+                <Sun className="h-5 w-5" aria-hidden="true" />
+              ) : (
+                <Moon className="h-5 w-5" aria-hidden="true" />
+              )}
             </motion.div>
           ) : (
             <div className="h-5 w-5" />

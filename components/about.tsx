@@ -11,6 +11,7 @@ export function AboutSection() {
   return (
     <section
       id="about"
+      aria-label="About Me section"
       className="flex min-h-screen w-full items-center overflow-hidden justify-center"
     >
       <div className="container mx-auto relative px-4 max-w-6xl grid items-center gap-6 lg:grid-cols-2">
@@ -19,7 +20,7 @@ export function AboutSection() {
             <CardItem translateZ="100" className="w-full mt-4">
               <Image
                 src="/rasheednw.PNG"
-                alt="Profile"
+                alt="Abdulrasheed Abdulsalam - Software Engineer"
                 height="1000"
                 width="1000"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -59,17 +60,23 @@ export function AboutSection() {
             </Reveal>
           </div>
           <Reveal>
-            <Button
-              className="inline-flex items-center gap-2"
-              onClick={() => window.open("/Abdulrasheed_Abdulsalam_Software_Engineer.pdf")}
-              variant="outline"
-            >
-              <ViewIcon className="h-4 w-4" />
-              View Resume
+            <Button asChild className="inline-flex items-center gap-2" variant="outline">
+              <a
+                href="/Abdulrasheed_Abdulsalam_Software_Engineer.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Resume PDF (opens in new tab)"
+              >
+                <ViewIcon className="h-4 w-4" aria-hidden="true" />
+                View Resume
+              </a>
             </Button>
           </Reveal>
         </div>
-        <div className="h-60 md:h-60 flex flex-col items-center absolute -right-60 -bottom-0 bg-transparent dark:bg-transparent mt-10">
+        <div
+          aria-hidden="true"
+          className="h-60 md:h-60 flex flex-col items-center absolute -right-60 -bottom-0 bg-transparent dark:bg-transparent mt-10"
+        >
           <Globe />
         </div>
       </div>

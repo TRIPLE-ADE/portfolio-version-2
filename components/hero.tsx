@@ -13,6 +13,7 @@ interface FloatingShapeProps {
 
 const FloatingShape = ({ className }: FloatingShapeProps) => (
   <motion.div
+    aria-hidden="true"
     className={`absolute rounded-full blur-2xl
     bg-gradient-to-br from-primary/50 to-primary/5 
     dark:from-primary/20 dark:to-primary/10
@@ -34,6 +35,7 @@ const FloatingShape = ({ className }: FloatingShapeProps) => (
 
 const GridPattern = () => (
   <div
+    aria-hidden="true"
     className="absolute -z-20 inset-0 
     bg-[linear-gradient(rgba(0,0,0,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.09)_1px,transparent_1px)] 
     dark:bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)]
@@ -46,6 +48,7 @@ export function HeroSection() {
   return (
     <section
       id="hero"
+      aria-label="Hero section"
       className="relative flex mt-10 min-h-screen w-full items-center justify-center overflow-hidden"
     >
       {/* Background Elements */}
@@ -91,26 +94,30 @@ export function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <Link href="/#projects" passHref>
-                  <Button
-                    size="lg"
-                    className="w-full transition-all hover:scale-105 hover:shadow-lg"
-                    aria-label="View Resume"
-                    onClick={() => window.open("/Abdulrasheed_Abdulsalam_Software_Engineer.pdf")}
+                <Button
+                  asChild
+                  size="lg"
+                  className="w-full transition-all hover:scale-105 hover:shadow-lg"
+                >
+                  <a
+                    href="/Abdulrasheed_Abdulsalam_Software_Engineer.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View Resume PDF (opens in new tab)"
                   >
                     View Resume
-                  </Button>
-                </Link>
-                <Link href="/#contact" passHref>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="w-full transition-all hover:scale-105 hover:shadow-lg"
-                    aria-label="Contact Me"
-                  >
+                  </a>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="w-full transition-all hover:scale-105 hover:shadow-lg"
+                >
+                  <Link href="/#contact" aria-label="Contact Me">
                     Contact Me
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </motion.div>
 
               <SocialIcons />
@@ -154,27 +161,31 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Link href="/#projects" passHref>
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full transition-all hover:scale-105 hover:shadow-lg"
-                aria-label="View Resume"
-                onClick={() => window.open("/Abdulrasheed_Abdulsalam_Software_Engineer.pdf")}
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="w-full transition-all hover:scale-105 hover:shadow-lg"
+            >
+              <a
+                href="/Abdulrasheed_Abdulsalam_Software_Engineer.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Resume PDF (opens in new tab)"
               >
                 View Resume
-              </Button>
-            </Link>
-            <Link href="/#contact" passHref>
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full transition-all hover:scale-105 hover:shadow-lg"
-                aria-label="Contact Me"
-              >
+              </a>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="w-full transition-all hover:scale-105 hover:shadow-lg"
+            >
+              <Link href="/#contact" aria-label="Contact Me">
                 Contact Me
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </motion.div>
 
           <SocialIcons />
@@ -225,7 +236,7 @@ const SocialIcon = ({ href, ariaLabel, icon }: SocialIconProps) => {
         rel="noopener noreferrer"
         target="_blank"
         aria-label={ariaLabel}
-        className="block text-muted-foreground  transition-colors"
+        className="block text-muted-foreground transition-colors hover:text-primary focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary rounded-md p-1"
       >
         <motion.div variants={iconAnimation}>{icon}</motion.div>
       </Link>
@@ -243,17 +254,17 @@ const SocialIcons = () => {
     >
       <SocialIcon
         href="https://github.com/TRIPLE-ADE"
-        ariaLabel="GitHub"
+        ariaLabel="Visit GitHub Profile (opens in new tab)"
         icon={<GithubIcon className="h-6 w-6" />}
       />
       <SocialIcon
         href="https://linkedin.com/in/abdulsalam-dev/"
-        ariaLabel="LinkedIn"
+        ariaLabel="Visit LinkedIn Profile (opens in new tab)"
         icon={<LinkedinIcon className="h-6 w-6" />}
       />
       <SocialIcon
         href="mailto:adetomiwaabdul@gmail.com"
-        ariaLabel="Email"
+        ariaLabel="Send an email to Abdulrasheed"
         icon={<Mail className="h-6 w-6" />}
       />
     </motion.div>

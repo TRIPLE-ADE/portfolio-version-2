@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
 
@@ -109,6 +108,8 @@ export const Globe = ({ className }: { className?: string }) => {
         cursor: "grab",
         contain: "layout paint opacity",
       }}
+      role="img"
+      aria-label="Interactive 3D representation of the globe"
       className={className}
     />
   );

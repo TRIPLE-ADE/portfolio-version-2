@@ -10,6 +10,8 @@ export function GithubIcon({ className, ...props }: React.SVGProps<SVGSVGElement
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
       className={className}
       {...props}
     >
@@ -29,6 +31,8 @@ export function LinkedinIcon({ className, ...props }: React.SVGProps<SVGSVGEleme
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
       className={className}
       {...props}
     >
