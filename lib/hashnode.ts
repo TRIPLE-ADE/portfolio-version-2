@@ -1,10 +1,7 @@
 import { cache } from "react";
-// Hashnode API utilities
-
-// The GraphQL endpoint for Hashnode API v2
-const HASHNODE_API = "https://gql.hashnode.com";
 
 const HASHNODE_USERNAME = "tripletech";
+const RSS_FEED_URL = `https://${HASHNODE_USERNAME}.hashnode.dev/rss.xml`;
 
 export type BlogPost = {
   id: string;
@@ -20,111 +17,67 @@ export type BlogPost = {
 };
 
 /**
- * Fetch all blog posts from Hashnode
+ * Fetch blog posts from Hashnode via RSS feed (since GraphQL API is now restricted to Pro tier)
  */
-
-/* Fetch blog posts from Hashnode
- * @param limit Optional number of posts to fetch (default: 20)
- */
-export const fetchBlogPosts = cache(async (limit: number = 20, after = null) => {
-  const query = `
-    query GetUserArticles($host: String!, $first: Int!, $after: String) {
-      publication(host: $host) {
-        posts(first: $first, after: $after) {
-          edges {
-            node {
-              id
-              title
-              brief
-              slug
-              publishedAt
-              coverImage {
-                url
-              }
-              readTimeInMinutes
-              reactionCount
-            }
-          }
-          pageInfo {
-            hasNextPage
-            endCursor
-          }
-          totalDocuments
-        }
-      }
-    }
-  `;
-
+export const fetchBlogPosts = cache(async (limit: number = 20) => {
   try {
-    const response = await fetch(HASHNODE_API, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query,
-        variables: {
-          host: `${HASHNODE_USERNAME}.hashnode.dev`,
-          first: limit,
-          after: after,
-        },
-      }),
-      next: { revalidate: 3600 }, // Revalidate every hour
+    const response = await fetch(RSS_FEED_URL, {
+      next: { revalidate: 3600 },
     });
 
     if (!response.ok) {
-      throw new Error(`API request failed with status ${response.status}`);
+      throw new Error(`Failed to fetch RSS feed with status ${response.status}`);
     }
 
-    const { data } = await response.json();
+    const xml = await response.text();
+    const posts: BlogPost[] = [];
+    const itemMatches = xml.matchAll(/<item>([\s\S]*?)<\/item>/g);
 
-    if (
-      !data ||
-      !data.publication ||
-      !data.publication.posts ||
-      !data.publication.posts.edges
-    ) {
-      console.error("Unexpected API response structure:", data);
-      return {
-        posts: [],
-        pageInfo: { hasNextPage: false, endCursor: null },
-        totalPosts: 0,
-      };
+    for (const match of itemMatches) {
+      const itemXml = match[1];
+      const title =
+        itemXml.match(/<title><!\[CDATA\[(.*?)\]\]><\/title>/)?.[1] ||
+        itemXml.match(/<title>(.*?)<\/title>/)?.[1] ||
+        "";
+      const link = itemXml.match(/<link>(.*?)<\/link>/)?.[1] || "";
+      const slug = link.split("/").filter(Boolean).pop() || "";
+      const rawDescription =
+        itemXml.match(/<description><!\[CDATA\[(.*?)\]\]><\/description>/)?.[1] ||
+        itemXml.match(/<description>(.*?)<\/description>/)?.[1] ||
+        "";
+      const brief = rawDescription
+        .replace(/<[^>]*>/g, "")
+        .trim()
+        .slice(0, 160);
+      const pubDate = itemXml.match(/<pubDate>(.*?)<\/pubDate>/)?.[1] || "";
+      const coverImage =
+        itemXml.match(/<enclosure\s+url="([^"]+)"/)?.[1] ||
+        itemXml.match(/<media:content\s+url="([^"]+)"/)?.[1] ||
+        null;
+
+      if (title && slug) {
+        posts.push({
+          id: slug,
+          title,
+          brief,
+          slug,
+          dateAdded: pubDate,
+          coverImage: coverImage || undefined,
+          readTime: 5,
+          responseCount: 0,
+        });
+      }
     }
 
-    // Define the type for edges
-    type Edge = {
-      node: {
-        id: string;
-        title: string;
-        brief: string;
-        slug: string;
-        publishedAt: string;
-        coverImage?: { url: string | null };
-        readTimeInMinutes?: number;
-        reactionCount?: number;
-      };
-    };
-
-    // Map the data to our expected format
-    const posts = data.publication.posts.edges.map(({ node }: Edge) => ({
-      id: node.id,
-      title: node.title,
-      brief: node.brief,
-      slug: node.slug,
-      dateAdded: node.publishedAt,
-      coverImage: node.coverImage?.url || null,
-      readTime: node.readTimeInMinutes || 5,
-      responseCount: node.reactionCount || 0,
-    }));
+    const sliced = posts.slice(0, limit);
 
     return {
-      posts,
-      pageInfo: data.publication.posts.pageInfo,
-      totalPosts: data.publication.posts.totalDocuments || 0,
+      posts: sliced,
+      pageInfo: { hasNextPage: posts.length > limit, endCursor: null },
+      totalPosts: posts.length,
     };
   } catch (error) {
-    console.error("Error fetching blog posts:", error);
+    console.error("Error fetching blog posts via RSS:", error);
     return {
       posts: [],
       pageInfo: { hasNextPage: false, endCursor: null },
@@ -134,79 +87,16 @@ export const fetchBlogPosts = cache(async (limit: number = 20, after = null) => 
 });
 
 /**
- * Fetch a single blog post by slug
+ * Fetch a single blog post by slug from RSS feed
  */
 export const fetchBlogPost = cache(async (slug: string) => {
-  console.log("Fetching blog post with slug:", slug);
-  // Updated query for Hashnode API v2
-  const query = `
-    query GetPostBySlug($host: String!, $slug: String!) {
-      publication(host: $host) {
-        post(slug: $slug) {
-          id
-          title
-          content {
-            html
-            markdown
-          }
-          brief
-          slug
-          publishedAt
-          coverImage {
-            url
-          }
-          readTimeInMinutes
-          reactionCount
-        }
-      }
-    }
-  `;
-
   try {
-    const response = await fetch(HASHNODE_API, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query,
-        variables: {
-          host: `${HASHNODE_USERNAME}.hashnode.dev`,
-          slug,
-        },
-      }),
-      next: { revalidate: 3600 }, // Revalidate every hour
-    });
-
-
-    if (!response.ok) {
-      throw new Error(`API request failed with status ${response.status}`);
+    const { posts } = await fetchBlogPosts(50);
+    const post = posts.find((p) => p.slug === slug);
+    if (!post) {
+      throw new Error(`Post not found: ${slug}`);
     }
-
-    const { data } = await response.json();
-
-    // Check if we have the expected data structure
-    if (!data || !data.publication || !data.publication.post) {
-      console.error(
-        "Unexpected API response structure or post not found:",
-        data
-      );
-      throw new Error("Post not found");
-    }
-
-    const post = data.publication.post;
-
-    return {
-      id: post.id,
-      title: post.title,
-      content: post.content?.markdown || "",
-      brief: post.brief,
-      slug: post.slug,
-      dateAdded: post.publishedAt,
-      coverImage: post.coverImage?.url || null,
-      readTime: post.readTimeInMinutes || 5,
-      responseCount: post.reactionCount || 0,
-    };
+    return post;
   } catch (error) {
     console.error("Error fetching blog post:", error);
     throw error;
