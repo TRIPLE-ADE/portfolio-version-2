@@ -40,19 +40,18 @@ export const CardContainer = ({
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
-    const { left, top, width, height } =
-      containerRef.current.getBoundingClientRect();
+    const { left, top, width, height } = containerRef.current.getBoundingClientRect();
     const x = (e.clientX - left - width / 2) / 25;
     const y = (e.clientY - top - height / 2) / 25;
     containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
   };
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseEnter = () => {
     setIsMouseEntered(true);
     if (!containerRef.current) return;
   };
 
-  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseLeave = () => {
     if (!containerRef.current) return;
     setIsMouseEntered(false);
     containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
@@ -60,10 +59,7 @@ export const CardContainer = ({
   return (
     <MouseEnterContext.Provider value={[isMouseEntered, setIsMouseEntered]}>
       <div
-        className={cn(
-          "py-20 flex items-center justify-center",
-          containerClassName
-        )}
+        className={cn("py-20 flex items-center justify-center", containerClassName)}
         style={{
           perspective: "1000px",
         }}
@@ -75,7 +71,7 @@ export const CardContainer = ({
           onMouseLeave={handleMouseLeave}
           className={cn(
             "flex items-center justify-center relative transition-all duration-200 ease-linear",
-            className
+            className,
           )}
           style={{
             transformStyle: "preserve-3d",
@@ -99,7 +95,7 @@ export const CardBody = ({
     <div
       className={cn(
         "h-96 w-96 [transform-style:preserve-3d]  [&>*]:[transform-style:preserve-3d]",
-        className
+        className,
       )}
     >
       {children}
@@ -121,7 +117,7 @@ export const CardItem = React.forwardRef<HTMLElement, CardItemProps>(
       rotateZ = 0,
       ...rest
     },
-    forwardedRef
+    forwardedRef,
   ) => {
     const localRef = useRef<HTMLElement>(null);
     const [isMouseEntered] = useMouseEnter();
@@ -138,15 +134,7 @@ export const CardItem = React.forwardRef<HTMLElement, CardItemProps>(
       } else {
         el.style.transform = `translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
       }
-    }, [
-      isMouseEntered,
-      rotateX,
-      rotateY,
-      rotateZ,
-      translateX,
-      translateY,
-      translateZ,
-    ]);
+    }, [isMouseEntered, rotateX, rotateY, rotateZ, translateX, translateY, translateZ]);
 
     // Cast the component to any to avoid the children type issues
     const TagComponent = Tag as any;
@@ -160,7 +148,7 @@ export const CardItem = React.forwardRef<HTMLElement, CardItemProps>(
         {children}
       </TagComponent>
     );
-  }
+  },
 );
 
 CardItem.displayName = "CardItem";

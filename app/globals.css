@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @plugin 'tailwindcss-animate';
 @plugin '@tailwindcss/typography';
@@ -154,7 +154,7 @@
     }
   }
 }
- 
+
 @keyframes spotlight {
   0% {
     opacity: 0;

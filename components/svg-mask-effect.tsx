@@ -28,10 +28,7 @@ export const MaskContainer = ({
     containerRef.current.addEventListener("mousemove", updateMousePosition);
     return () => {
       if (containerRef.current) {
-        containerRef.current.removeEventListener(
-          "mousemove",
-          updateMousePosition,
-        );
+        containerRef.current.removeEventListener("mousemove", updateMousePosition);
       }
     };
   }, []);
@@ -51,9 +48,7 @@ export const MaskContainer = ({
       <motion.div
         className="absolute flex h-full w-full items-center justify-center bg-black text-6xl [mask-image:url(/mask.svg)] [mask-repeat:no-repeat] [mask-size:40px] dark:bg-white"
         animate={{
-          maskPosition: `${mousePosition.x - maskSize / 2}px ${
-            mousePosition.y - maskSize / 2
-          }px`,
+          maskPosition: `${mousePosition.x - maskSize / 2}px ${mousePosition.y - maskSize / 2}px`,
           maskSize: `${maskSize}px`,
         }}
         transition={{
@@ -75,9 +70,7 @@ export const MaskContainer = ({
         </div>
       </motion.div>
 
-      <div className="flex h-full w-full items-center justify-center">
-        {revealText}
-      </div>
+      <div className="flex h-full w-full items-center justify-center">{revealText}</div>
     </motion.div>
   );
 };

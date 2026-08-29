@@ -10,8 +10,9 @@ export const Globe = ({ className }: { className?: string }) => {
   const pointerInteractionMovement = useRef(0);
 
   useEffect(() => {
-
     if (!canvasRef.current) return;
+
+    let animFrameId: number;
 
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
@@ -31,16 +32,21 @@ export const Globe = ({ className }: { className?: string }) => {
         { location: [37.7595, -122.4367], size: 0.03 },
         { location: [40.7128, -74.006], size: 0.1 },
       ],
-      onRender: (state) => {
-
-        state.phi = phi.current + pointerInteractionMovement.current;
-        if (pointerInteracting.current === null) {
-          phi.current += 0.01;
-        }
-      },
     });
 
+    const render = () => {
+      const currentPhi = phi.current + pointerInteractionMovement.current;
+      globe.update({ phi: currentPhi });
+      if (pointerInteracting.current === null) {
+        phi.current += 0.01;
+      }
+      animFrameId = requestAnimationFrame(render);
+    };
+
+    animFrameId = requestAnimationFrame(render);
+
     return () => {
+      cancelAnimationFrame(animFrameId);
       globe.destroy();
     };
   }, []);
@@ -49,8 +55,7 @@ export const Globe = ({ className }: { className?: string }) => {
     <canvas
       ref={canvasRef}
       onPointerDown={(e) => {
-        pointerInteracting.current =
-          e.clientX - pointerInteractionMovement.current;
+        pointerInteracting.current = e.clientX - pointerInteractionMovement.current;
         canvasRef.current!.style.cursor = "grabbing";
       }}
       onPointerUp={() => {

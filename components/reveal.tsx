@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
-import { motion, useInView, useAnimation, type Variant } from "motion/react"
+import { useEffect, useRef } from "react";
+import { motion, useInView, useAnimation, type Variant } from "motion/react";
 
 interface RevealProps {
-  children: React.ReactNode
-  width?: "fit-content" | "100%"
+  children: React.ReactNode;
+  width?: "fit-content" | "100%";
   variants?: {
-    hidden: Variant
-    visible: Variant
-  }
+    hidden: Variant;
+    visible: Variant;
+  };
 }
 
 export function Reveal({
@@ -20,15 +20,15 @@ export function Reveal({
     visible: { opacity: 1, y: 0 },
   },
 }: RevealProps) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
-  const controls = useAnimation()
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const controls = useAnimation();
 
   useEffect(() => {
     if (isInView) {
-      controls.start("visible")
+      controls.start("visible");
     }
-  }, [isInView, controls])
+  }, [isInView, controls]);
 
   return (
     <div ref={ref} style={{ width }}>
@@ -41,6 +41,5 @@ export function Reveal({
         {children}
       </motion.div>
     </div>
-  )
+  );
 }
-

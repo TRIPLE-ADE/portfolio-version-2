@@ -30,38 +30,38 @@ export function AboutSection() {
         </CardContainer>
         <div className="flex flex-col text-justify justify-center p-4 lg:p-0 space-y-8 z-10">
           <Reveal>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              About Me
-            </h2>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">About Me</h2>
           </Reveal>
 
           <div className="space-y-4 pr-4 pb-4 rounded-lg bg-transparent backdrop-blur-2xl lg:backdrop-blur-none">
             <Reveal>
               <p className="text-lg text-muted-foreground">
-                I am a results-driven Software Engineer with a focus on engineering high-performance web solutions that drive business value and solve complex technical challenges.
+                I am a results-driven Software Engineer with a focus on engineering high-performance
+                web solutions that drive business value and solve complex technical challenges.
               </p>
             </Reveal>
 
             <Reveal>
               <p className="text-lg text-muted-foreground">
-                With expertise in React, Next.js, and TypeScript, I build scalable architectures and intuitive interfaces that bridge the gap between business objectives and user needs. My approach combines technical excellence with a deep understanding of product growth.
+                With expertise in React, Next.js, and TypeScript, I build scalable architectures and
+                intuitive interfaces that bridge the gap between business objectives and user needs.
+                My approach combines technical excellence with a deep understanding of product
+                growth.
               </p>
             </Reveal>
 
             <Reveal>
               <p className="text-lg text-muted-foreground">
-                Currently, I am leveraging AI and LLMs to build intelligent automation tools and data-driven applications that enhance productivity and provide actionable insights for modern enterprises.
+                Currently, I am leveraging AI and LLMs to build intelligent automation tools and
+                data-driven applications that enhance productivity and provide actionable insights
+                for modern enterprises.
               </p>
             </Reveal>
           </div>
           <Reveal>
             <Button
               className="inline-flex items-center gap-2"
-              onClick={() =>
-                window.open(
-                  "/Abdulrasheed_Abdulsalam_Software_Engineer.pdf"
-                )
-              }
+              onClick={() => window.open("/Abdulrasheed_Abdulsalam_Software_Engineer.pdf")}
               variant="outline"
             >
               <ViewIcon className="h-4 w-4" />

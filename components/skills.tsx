@@ -40,12 +40,7 @@ const skills = [
     name: "Tailwind CSS",
     category: "Frontend",
     icon: Palette,
-    technologies: [
-      "Responsive Design",
-      "Custom Themes",
-      "Components",
-      "Animations",
-    ],
+    technologies: ["Responsive Design", "Custom Themes", "Components", "Animations"],
   },
   {
     name: "Expo / React Native",
@@ -111,7 +106,8 @@ export function SkillsSection() {
             Skills & Expertise
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Developing robust, scalable technical foundations that power business growth and digital transformation.
+            Developing robust, scalable technical foundations that power business growth and digital
+            transformation.
           </p>
         </motion.div>
 
@@ -154,13 +150,10 @@ export function SkillsSection() {
                             <span className="text-primary">
                               {React.createElement(skill.icon, {
                                 size: 24,
-                                className:
-                                  "transition-transform group-hover:scale-110",
+                                className: "transition-transform group-hover:scale-110",
                               })}
                             </span>
-                            <h4 className="text-xl font-medium">
-                              {skill.name}
-                            </h4>
+                            <h4 className="text-xl font-medium">{skill.name}</h4>
                           </div>
                           <div className="mt-4 flex flex-wrap gap-2">
                             {skill.technologies.map((tech) => (

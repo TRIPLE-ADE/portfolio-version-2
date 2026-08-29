@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { Github, Linkedin } from "@/components/icons";
 import Image from "next/image";
 
 const socialLinks = [
@@ -29,10 +30,7 @@ const socialLinks = [
 
 export function ContactSection() {
   return (
-    <section
-      id="contact"
-      className="flex w-full justify-center py-16 scroll-mt-10"
-    >
+    <section id="contact" className="flex w-full justify-center py-16 scroll-mt-10">
       <div className="container max-w-2xl mx-auto px-4">
         {/* Social Links Section */}
         <motion.div
@@ -43,12 +41,10 @@ export function ContactSection() {
           className="flex flex-col items-center"
         >
           <div className="w-full text-center">
-            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
-              Let's Connect
-            </h2>
+            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">Let's Connect</h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Whether it's for a potential project, a collaboration, or just to
-              say hi, you can find me on these platforms. Let's stay in touch!
+              Whether it's for a potential project, a collaboration, or just to say hi, you can find
+              me on these platforms. Let's stay in touch!
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               {socialLinks.map((link) => (

@@ -1,16 +1,19 @@
-"use client"
-import Link from "next/link"
-import Image from "next/image"
-import { motion } from "motion/react"
-import { ArrowUpRight, BookOpen } from "lucide-react"
-import { Card } from "@/components/ui/card"
-import { GlowingEffect } from "@/components/ui/glowing-effect"
-import { formatDate } from "@/lib/utils"
-import { BlogPost } from "@/lib/hashnode"
+"use client";
+import Link from "next/link";
+import Image from "next/image";
+import { motion } from "motion/react";
+import { ArrowUpRight, BookOpen } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { formatDate } from "@/lib/utils";
+import { BlogPost } from "@/lib/hashnode";
 
 export default function BlogPreviewSection({ posts }: { posts: BlogPost[] }) {
   return (
-    <section id="blog" className="flex min-h-screen w-full items-center justify-center py-16 px-4 scroll-mt-10">
+    <section
+      id="blog"
+      className="flex min-h-screen w-full items-center justify-center py-16 px-4 scroll-mt-10"
+    >
       <div className="mx-auto max-w-6xl">
         <motion.div
           className="text-center"
@@ -22,7 +25,10 @@ export default function BlogPreviewSection({ posts }: { posts: BlogPost[] }) {
           <h2 className="text-4xl font-bold tracking-tight sm:text-5xl bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
             Latest Articles
           </h2>
-          <p className="mt-4 text-muted-foreground">Thoughts and insights on software development, design, technology, AI tools and practical engineering tips.</p>
+          <p className="mt-4 text-muted-foreground">
+            Thoughts and insights on software development, design, technology, AI tools and
+            practical engineering tips.
+          </p>
         </motion.div>
 
         <div className="mt-16">
@@ -50,7 +56,12 @@ export default function BlogPreviewSection({ posts }: { posts: BlogPost[] }) {
                     proximity={64}
                     inactiveZone={0.01}
                   />
-                  <Link href={`https://tripletech.hashnode.dev/${post.slug}`} target="_blank" rel="noopener noreferrer" className="block h-full">
+                  <Link
+                    href={`https://tripletech.hashnode.dev/${post.slug}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block h-full"
+                  >
                     <Card className="group relative h-full overflow-hidden transition-all hover:border-primary hover:shadow-lg border-0.75 dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
                       <div className="relative w-full h-48 overflow-hidden">
                         <Image
@@ -65,14 +76,21 @@ export default function BlogPreviewSection({ posts }: { posts: BlogPost[] }) {
                         <div className="relative z-10">
                           <div className="mb-4 flex items-center gap-3">
                             <span className="text-primary">
-                              <BookOpen size={24} className="transition-transform group-hover:scale-110" />
+                              <BookOpen
+                                size={24}
+                                className="transition-transform group-hover:scale-110"
+                              />
                             </span>
-                            <time className="text-sm text-muted-foreground">{formatDate(post.dateAdded)}</time>
+                            <time className="text-sm text-muted-foreground">
+                              {formatDate(post.dateAdded)}
+                            </time>
                           </div>
                           <h4 className="text-xl font-medium line-clamp-2 mb-2">{post.title}</h4>
                           <p className="text-muted-foreground line-clamp-2 text-sm">{post.brief}</p>
                           <div className="mt-4 flex items-center justify-between">
-                            <span className="text-xs text-muted-foreground">{post.readTime} min read</span>
+                            <span className="text-xs text-muted-foreground">
+                              {post.readTime} min read
+                            </span>
                             <span className="text-primary font-medium text-sm flex items-center gap-1 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                               Read more
                               <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -112,5 +130,5 @@ export default function BlogPreviewSection({ posts }: { posts: BlogPost[] }) {
         </motion.div> */}
       </div>
     </section>
-  )
+  );
 }

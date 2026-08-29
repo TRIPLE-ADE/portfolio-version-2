@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, type Variants } from "motion/react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { GithubIcon, LinkedinIcon, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { MaskContainer } from "./svg-mask-effect";
 
 interface FloatingShapeProps {
@@ -70,7 +71,9 @@ export function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                I am a Software Engineer dedicated to solving complex technical challenges. I build scalable, high-performance applications that transform ideas into impactful business solutions.
+                I am a Software Engineer dedicated to solving complex technical challenges. I build
+                scalable, high-performance applications that transform ideas into impactful business
+                solutions.
               </motion.p>
 
               <motion.p
@@ -93,11 +96,7 @@ export function HeroSection() {
                     size="lg"
                     className="w-full transition-all hover:scale-105 hover:shadow-lg"
                     aria-label="View Resume"
-                    onClick={() =>
-                      window.open(
-                        "/Abdulrasheed_Abdulsalam_Software_Engineer.pdf"
-                      )
-                    }
+                    onClick={() => window.open("/Abdulrasheed_Abdulsalam_Software_Engineer.pdf")}
                   >
                     View Resume
                   </Button>
@@ -135,7 +134,9 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            I am a Software Engineer dedicated to solving complex technical challenges. I build scalable, high-performance applications that transform ideas into impactful business solutions.
+            I am a Software Engineer dedicated to solving complex technical challenges. I build
+            scalable, high-performance applications that transform ideas into impactful business
+            solutions.
           </motion.p>
 
           <motion.p
@@ -159,11 +160,7 @@ export function HeroSection() {
                 variant="outline"
                 className="w-full transition-all hover:scale-105 hover:shadow-lg"
                 aria-label="View Resume"
-                onClick={() =>
-                  window.open(
-                    "/Abdulrasheed_Abdulsalam_Software_Engineer.pdf"
-                  )
-                }
+                onClick={() => window.open("/Abdulrasheed_Abdulsalam_Software_Engineer.pdf")}
               >
                 View Resume
               </Button>
@@ -194,7 +191,7 @@ interface SocialIconProps {
 }
 
 const SocialIcon = ({ href, ariaLabel, icon }: SocialIconProps) => {
-  const iconAnimation = {
+  const iconAnimation: Variants = {
     rest: {
       scale: 1,
       rotate: 0,

@@ -19,6 +19,7 @@ const navItems = [
 
 export function Navbar() {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
   const [activeSection, setActiveSection] = React.useState("hero");
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -28,12 +29,13 @@ export function Navbar() {
   const isHomePage = pathName === "/";
 
   React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  React.useEffect(() => {
     if (isHomePage) {
       const element = document.getElementById("hero");
-      if (
-        element &&
-        element.getBoundingClientRect().top <= window.innerHeight / 2
-      ) {
+      if (element && element.getBoundingClientRect().top <= window.innerHeight / 2) {
         setActiveSection("hero");
       }
     } else {
@@ -82,7 +84,7 @@ export function Navbar() {
       {
         rootMargin: "-50% 0px -50% 0px",
         threshold: 0,
-      }
+      },
     );
 
     navItems.forEach(({ section }) => {
@@ -107,8 +109,9 @@ export function Navbar() {
 
   return (
     <motion.header
-      className={`fixed flex items-center justify-center z-50 w-full backdrop-blur-lg ${isScrolled ? "bg-background/90 backdrop-blur-lg" : "bg-transparent"
-        } transition-all duration-300`}
+      className={`fixed flex items-center justify-center z-50 w-full backdrop-blur-lg ${
+        isScrolled ? "bg-background/90 backdrop-blur-lg" : "bg-transparent"
+      } transition-all duration-300`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.3 }}
@@ -129,10 +132,11 @@ export function Navbar() {
               <button
                 key={item.section}
                 onClick={() => scrollToSection(item.section)}
-                className={`relative text-sm font-medium transition-colors hover:text-muted-foreground ${activeSection === item.section && isHomePage
-                  ? "text-muted-foreground"
-                  : "text-primary"
-                  }`}
+                className={`relative text-sm font-medium transition-colors hover:text-muted-foreground ${
+                  activeSection === item.section && isHomePage
+                    ? "text-muted-foreground"
+                    : "text-primary"
+                }`}
               >
                 {item.name}
                 {activeSection === item.section && isHomePage && (
@@ -153,23 +157,14 @@ export function Navbar() {
               <Home className="h-5 w-5" />
             </Link>
           ) : (
-            <Button
-              ref={buttonRef}
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-            >
+            <Button ref={buttonRef} variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)}>
               <motion.div
                 key={isOpen as unknown as string}
                 initial={{ opacity: 0, rotate: isOpen ? 90 : -90 }}
                 animate={{ opacity: 1, rotate: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                {isOpen ? (
-                  <X className="h-5 w-5" />
-                ) : (
-                  <Menu className="h-5 w-5" />
-                )}
+                {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
                 <span className="sr-only">Toggle menu</span>
               </motion.div>
             </Button>
@@ -192,10 +187,11 @@ export function Navbar() {
                         scrollToSection(item.section);
                         setIsOpen(false);
                       }}
-                      className={`text-left text-sm font-medium transition-colors hover:text-primary ${activeSection === item.section && isHomePage
-                        ? "text-primary"
-                        : "text-muted-foreground"
-                        }`}
+                      className={`text-left text-sm font-medium transition-colors hover:text-primary ${
+                        activeSection === item.section && isHomePage
+                          ? "text-primary"
+                          : "text-muted-foreground"
+                      }`}
                     >
                       {item.name}
                     </button>
@@ -213,18 +209,18 @@ export function Navbar() {
           className="ml-auto md:ml-0"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
-          <motion.div
-            key={theme}
-            initial={{ opacity: 0, rotate: theme === "dark" ? 90 : -90 }}
-            animate={{ opacity: 1, rotate: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            {theme === "dark" ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
-          </motion.div>
+          {mounted ? (
+            <motion.div
+              key={theme}
+              initial={{ opacity: 0, rotate: theme === "dark" ? 90 : -90 }}
+              animate={{ opacity: 1, rotate: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </motion.div>
+          ) : (
+            <div className="h-5 w-5" />
+          )}
           <span className="sr-only">Toggle theme</span>
         </Button>
       </div>

@@ -1,5 +1,5 @@
 import { Lato } from "next/font/google";
-import { Analytics } from '@vercel/analytics/react'
+import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -34,8 +34,7 @@ export const metadata = {
   author: "Abdulrasheed Abdulsalam",
   openGraph: {
     title: "Rasheed's Portfolio",
-    description:
-      "Discover Rasheed's work and projects in software development.",
+    description: "Discover Rasheed's work and projects in software development.",
     url: "https://rasheed-abdulsalam.vercel.app",
     type: "website",
     images: [
@@ -50,25 +49,16 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Rasheed's Portfolio",
-    description:
-      "Discover Rasheed's work and projects in software development.",
+    description: "Discover Rasheed's work and projects in software development.",
     images: ["/rasheed.PNG"],
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={lato.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-        >
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <SmoothScrollProvider>
             <div className="relative min-h-screen">
               <Navbar />
