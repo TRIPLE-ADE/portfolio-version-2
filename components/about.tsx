@@ -16,7 +16,7 @@ export function AboutSection() {
     >
       <div className="container mx-auto relative px-4 max-w-6xl grid items-center gap-6 lg:grid-cols-2">
         <CardContainer className="inter-var">
-          <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl border">
+          <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/10 dark:bg-black dark:border-white/20 border-black/10 w-auto sm:w-120 h-auto rounded-xl border">
             <CardItem translateZ="100" className="w-full mt-4">
               <Image
                 src="/rasheednw.PNG"
@@ -75,7 +75,7 @@ export function AboutSection() {
         </div>
         <div
           aria-hidden="true"
-          className="h-60 md:h-60 flex flex-col items-center absolute -right-60 -bottom-0 bg-transparent dark:bg-transparent mt-10"
+          className="h-60 md:h-60 flex flex-col items-center absolute -right-60 bottom-0 bg-transparent dark:bg-transparent mt-10"
         >
           <Globe />
         </div>

@@ -15,7 +15,7 @@ const FloatingShape = ({ className }: FloatingShapeProps) => (
   <motion.div
     aria-hidden="true"
     className={`absolute rounded-full blur-2xl
-    bg-gradient-to-br from-primary/50 to-primary/5 
+    bg-linear-to-br from-primary/50 to-primary/5 
     dark:from-primary/20 dark:to-primary/10
     ${className}
   `}
@@ -39,8 +39,8 @@ const GridPattern = () => (
     className="absolute -z-20 inset-0 
     bg-[linear-gradient(rgba(0,0,0,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.09)_1px,transparent_1px)] 
     dark:bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)]
-    bg-[size:4rem_4rem] 
-    [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)]"
+    bg-size-[4rem_4rem] 
+    mask-[radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)]"
   />
 );
 

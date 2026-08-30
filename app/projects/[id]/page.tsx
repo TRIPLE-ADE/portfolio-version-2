@@ -71,7 +71,7 @@ export default function ProjectDetailPage() {
               </span>
             ))}
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-linear-to-r from-primary to-primary/60">
             {project.title}
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed mb-8 italic">

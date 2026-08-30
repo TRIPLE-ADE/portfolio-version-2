@@ -22,7 +22,7 @@ export default function BlogPreviewSection({ posts }: { posts: BlogPost[] }) {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl bg-linear-to-r from-primary to-primary/70 bg-clip-text text-transparent">
             Latest Articles
           </h2>
           <p className="mt-4 text-muted-foreground">
@@ -71,7 +71,7 @@ export default function BlogPreviewSection({ posts }: { posts: BlogPost[] }) {
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           className="object-cover transition-transform duration-300 group-hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="absolute inset-0 bg-linear-to-t from-background/80 via-background/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </div>
                       <div className="p-6 relative">
                         <div className="relative z-10">
@@ -98,7 +98,7 @@ export default function BlogPreviewSection({ posts }: { posts: BlogPost[] }) {
                             </span>
                           </div>
                         </div>
-                        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-primary/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                        <div className="absolute inset-0 -z-10 bg-linear-to-r from-primary/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                       </div>
 
                       {/* Corner indicator */}

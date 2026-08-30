@@ -153,7 +153,7 @@ export function Navbar() {
                 {item.name}
                 {activeSection === item.section && isHomePage && (
                   <motion.span
-                    className="absolute bottom-0 left-0 h-[2px] w-full bg-muted-foreground"
+                    className="absolute bottom-0 left-0 h-0.5 w-full bg-muted-foreground"
                     layoutId="activeSection"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
