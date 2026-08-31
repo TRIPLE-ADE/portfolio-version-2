@@ -13,7 +13,7 @@ export function ContactSection() {
           <div className="relative mt-5 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <h2 className="max-w-4xl text-4xl font-extrabold tracking-[-0.055em] sm:text-6xl lg:text-7xl">
-                Hiring a product engineer—or building something that needs one?
+                Hiring a product engineer or building something that needs one?
               </h2>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-primary-foreground/75">
                 I’m open to frontend and mobile engineering roles, contract product work, and

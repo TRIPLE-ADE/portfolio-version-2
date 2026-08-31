@@ -37,7 +37,7 @@ export function HeroSection() {
             style={{ "--delay": "160ms" } as React.CSSProperties}
           >
             Frontend and mobile engineer building user-focused products with React, Next.js, React
-            Native, Expo, and TypeScript—shaped by real constraints and built to ship.
+            Native, Expo, and TypeScript shaped by real constraints and built to ship.
           </p>
 
           <div

@@ -141,7 +141,7 @@ export function ProjectsSection() {
           </div>
           <p className="max-w-2xl text-lg leading-8 text-muted-foreground lg:justify-self-end">
             Products shaped by privacy constraints, sensitive user journeys, and compressed delivery
-            timelines. Each case study explains the decisions—not just the technology.
+            timelines. Each case study explains the decisions not just the technology.
           </p>
         </div>
 
