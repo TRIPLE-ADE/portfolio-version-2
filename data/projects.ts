@@ -273,7 +273,6 @@ The team delivered a public Internet Computer deployment and received **Third Pl
   },
   {
     id: "workforce-integrity-engine",
-    featuredOnHome: true,
     title: "Workforce Integrity Engine",
     description:
       "A payroll-risk intelligence prototype that helps institutions detect suspicious workforce behavior before salary disbursement.",
