@@ -16,11 +16,14 @@ export interface Project {
   outcome: string;
   outcomeLabel: string;
   recognition?: string;
+  cardSize?: "wide";
+  featuredOnHome?: boolean;
 }
 
 export const projects: Project[] = [
   {
     id: "private-ai-note",
+    featuredOnHome: true,
     title: "Private AI Note",
     description:
       "An offline-first, privacy-focused AI note-taking Android application with on-device intelligence.",
@@ -137,9 +140,11 @@ It reflects how I approach engineering: **user trust, performance, and practical
     image: "/projects/private-ai-note.webp",
     link: "https://private-ai-note.vercel.app/",
     store: "https://play.google.com/store/apps/details?id=com.tripletech.ainote&hl=en",
+    cardSize: "wide",
   },
   {
     id: "triplex-ecommerce",
+    featuredOnHome: true,
     title: "Triplex E-commerce",
     description:
       "A full-stack wearable-commerce experience with CMS-managed inventory, persistent carts, authenticated orders, and verified payments.",
@@ -211,6 +216,7 @@ Triplex demonstrates full-stack product judgment: joining interface quality with
   },
   {
     id: "clypr",
+    featuredOnHome: true,
     title: "Clypr",
     description:
       "A privacy gateway that gives people one communication handle and control over how messages reach them.",
@@ -264,6 +270,108 @@ The team delivered a public Internet Computer deployment and received **Third Pl
     image: "/projects/clypr.webp",
     link: "https://l545n-vqaaa-aaaap-qqd6a-cai.icp0.io",
     result: "https://dorahacks.io/hackathon/wchl25-national-round/winner",
+  },
+  {
+    id: "workforce-integrity-engine",
+    featuredOnHome: true,
+    title: "Workforce Integrity Engine",
+    description:
+      "A payroll-risk intelligence prototype that helps institutions detect suspicious workforce behavior before salary disbursement.",
+    longDescription:
+      "A four-person Squad Hackathon prototype combining explainable risk scoring, human investigation workflows, audit visibility, and payment controls for proactive payroll-integrity review.",
+    context: "Squad Hackathon 3.0",
+    role: "Frontend engineer · 4-person team",
+    status: "Prototype",
+    outcome: "Pre-payment review demo",
+    outcomeLabel: "Risk scoring, investigation, and controlled disbursement",
+    recognition: "Top-20 team stage · Squad Hackathon 3.0",
+    content: `
+# Workforce Integrity Engine
+
+**Continuous payroll-integrity intelligence with human-controlled payment intervention**
+
+---
+
+## Problem
+
+Traditional payroll systems process transactions but often discover ghost workers, duplicate accounts, salary anomalies, and stale identity records only after funds have been disbursed.
+
+Workforce Integrity Engine was designed as an intelligence layer above existing payroll infrastructure, helping institutional finance and audit teams identify suspicious behavior before a payment leaves.
+
+---
+
+## Solution
+
+The prototype correlates payroll records, attendance behavior, verification freshness, historical trust patterns, peer-group deviations, and payout anomalies.
+
+It demonstrates an operational review workflow designed to:
+* Generate evolving employee trust scores
+* Surface explainable anomaly evidence
+* Identify suspicious relationships such as shared payout accounts
+* Route high-risk records to human investigators
+* Pause, approve, or release payments through Squad-backed workflows
+* Preserve an audit history of model signals and human decisions
+
+---
+
+## My Contribution
+
+I worked as the **Frontend Engineer in a four-person team**.
+
+My responsibilities included:
+* Building the Next.js interface for payroll review and risk investigation
+* Presenting multi-signal risk scores without reducing decisions to opaque AI labels
+* Implementing workflows for anomaly evidence, trust monitoring, and payment intervention
+* Connecting frontend journeys to project APIs and Squad's test environment
+* Collaborating with backend and machine-learning engineers during rapid hackathon delivery
+
+The wider team delivered the backend, intelligence models, data workflows, and supporting product work. The hackathon result belongs to the team; the responsibilities above describe my personal contribution.
+
+---
+
+## Product and Engineering Approach
+
+### Explainable Risk Intelligence
+* Deterministic fraud rules detect conditions such as duplicate payout accounts and unusual salary changes
+* Statistical anomaly detection surfaces deviations from historical and peer-group behavior
+* Every flagged record includes evidence and reasoning for investigator review
+
+### Human-in-the-Loop Controls
+The prototype does not make irreversible employment or financial decisions autonomously. Its demo flow requires investigators to review the evidence before approving, escalating, blocking, or releasing a disbursement.
+
+### Squad Integration
+The prototype connects its frontend workflows to Squad APIs and a virtual-account test environment for identity checks, payout controls, and transaction-linked audit flows. In the demo, payment release follows the relevant human-review step.
+
+### Frontend Stack
+* Next.js and TypeScript
+* Tailwind CSS
+* TanStack Query for server-state workflows
+* Zustand for focused client state
+* Recharts for operational risk visualisation
+
+---
+
+## Outcome and Recognition
+
+The team delivered a public working prototype and reports advancing to the **top-20 team stage of Squad Hackathon 3.0**. [Independent event coverage](https://techeconomy.ng/squad-hackathon-3-0-records-10x-growth-as-team-block-x-wins-top-prize) reported more than 1,600 undergraduate applicants; the top-20 figure describes the team's competition stage rather than an individual ranking.
+
+---
+
+## Why This Project Matters
+
+Workforce Integrity Engine demonstrates frontend engineering for a high-stakes operational system: dense data, explainable machine-learning signals, financial controls, audit requirements, and human judgment all need to work together clearly.
+
+---
+
+## Links
+* **Live product:** [https://payroll-guard.vercel.app](https://payroll-guard.vercel.app)
+* **Source:** [https://github.com/TRIPLE-ADE/team-payroll-ghost](https://github.com/TRIPLE-ADE/team-payroll-ghost)
+        `,
+    tags: ["Next.js", "TypeScript", "TanStack Query", "Squad API", "Fintech"],
+    image: "/projects/pay-guard.webp",
+    link: "https://payroll-guard.vercel.app",
+    github: "https://github.com/TRIPLE-ADE/team-payroll-ghost",
+    cardSize: "wide",
   },
   {
     id: "findcare",
@@ -498,3 +606,5 @@ It also reflects my interest in building **technology with social impact**.
     link: "https://youtube.com/shorts/_0H_HvfSh0w",
   },
 ];
+
+export const homepageProjects = projects.filter((project) => project.featuredOnHome);

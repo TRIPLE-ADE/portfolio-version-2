@@ -18,7 +18,7 @@ export function Footer() {
             GitHub
           </a>
           <a
-            href="https://linkedin.com/in/abdulsalam-dev/"
+            href="https://www.linkedin.com/in/rasheed-abdulsalam"
             target="_blank"
             rel="noreferrer"
             className="text-link"
