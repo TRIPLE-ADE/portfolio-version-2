@@ -1,134 +1,95 @@
-"use client";
-import Link from "next/link";
 import Image from "next/image";
-import { motion } from "motion/react";
-import { ArrowUpRight, BookOpen } from "lucide-react";
-import { Card } from "@/components/ui/card";
-import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { ArrowUpRight } from "lucide-react";
+import { fetchBlogPosts } from "@/lib/hashnode";
 import { formatDate } from "@/lib/utils";
-import { BlogPost } from "@/lib/hashnode";
 
-export default function BlogPreviewSection({ posts }: { posts: BlogPost[] }) {
+export default async function BlogSection() {
+  const { posts } = await fetchBlogPosts(3);
+
   return (
-    <section
-      id="blog"
-      className="flex min-h-screen w-full items-center justify-center py-16 px-4 scroll-mt-10"
-    >
-      <div className="mx-auto max-w-6xl">
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl bg-linear-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-            Latest Articles
-          </h2>
-          <p className="mt-4 text-muted-foreground">
-            Thoughts and insights on software development, design, technology, AI tools and
-            practical engineering tips.
-          </p>
-        </motion.div>
-
-        <div className="mt-16">
-          {posts.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground">No blog posts found.</p>
-            </div>
-          ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {posts.map((post, index) => (
-                <motion.div
-                  key={post.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative group h-full border p-2 md:rounded-2xl md:p-3"
-                >
-                  <GlowingEffect
-                    blur={0}
-                    borderWidth={2}
-                    spread={80}
-                    glow={true}
-                    disabled={false}
-                    proximity={64}
-                    inactiveZone={0.01}
-                  />
-                  <Link
-                    href={`https://tripletech.hashnode.dev/${post.slug}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block h-full"
-                  >
-                    <Card className="group relative h-full overflow-hidden transition-all hover:border-primary hover:shadow-lg border-0.75 dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
-                      <div className="relative w-full h-48 overflow-hidden">
-                        <Image
-                          src={post.coverImage || "/placeholder.svg?height=400&width=600"}
-                          alt={post.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          className="object-cover transition-transform duration-300 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-linear-to-t from-background/80 via-background/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      </div>
-                      <div className="p-6 relative">
-                        <div className="relative z-10">
-                          <div className="mb-4 flex items-center gap-3">
-                            <span className="text-primary">
-                              <BookOpen
-                                size={24}
-                                className="transition-transform group-hover:scale-110"
-                              />
-                            </span>
-                            <time className="text-sm text-muted-foreground">
-                              {formatDate(post.dateAdded)}
-                            </time>
-                          </div>
-                          <h4 className="text-xl font-medium line-clamp-2 mb-2">{post.title}</h4>
-                          <p className="text-muted-foreground line-clamp-2 text-sm">{post.brief}</p>
-                          <div className="mt-4 flex items-center justify-between">
-                            <span className="text-xs text-muted-foreground">
-                              {post.readTime} min read
-                            </span>
-                            <span className="text-primary font-medium text-sm flex items-center gap-1 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                              Read more
-                              <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                            </span>
-                          </div>
-                        </div>
-                        <div className="absolute inset-0 -z-10 bg-linear-to-r from-primary/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                      </div>
-
-                      {/* Corner indicator */}
-                      <div className="absolute top-0 right-0 w-12 h-12 overflow-hidden transition-opacity opacity-0 group-hover:opacity-100 duration-300">
-                        <div className="absolute top-0 right-0 bg-primary text-primary-foreground w-16 h-16 flex items-center justify-center rotate-45 translate-x-8 -translate-y-8 group-hover:translate-x-6 group-hover:-translate-y-6 transition-transform duration-300">
-                          <ArrowUpRight className="h-4 w-4 -rotate-45" />
-                        </div>
-                      </div>
-                    </Card>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          )}
+    <section id="writing" className="section-block border-t bg-card/55">
+      <div className="page-shell">
+        <div className="flex flex-col gap-6 border-b pb-9 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="label text-primary">Writing</p>
+            <h2 className="mt-4 text-4xl font-extrabold tracking-tighter sm:text-6xl">
+              Notes from the work.
+            </h2>
+          </div>
+          <a
+            href="https://tripletech.hashnode.dev"
+            target="_blank"
+            rel="noreferrer"
+            className="text-link inline-flex items-center gap-2 self-start font-bold sm:self-auto"
+          >
+            Browse all articles
+            <ArrowUpRight className="size-4" aria-hidden="true" />
+            <span className="sr-only">(opens in a new tab)</span>
+          </a>
         </div>
 
-        {/* <motion.div
-          className="mt-12 flex justify-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <Link href="/blog">
-            <Button variant="outline" className="group">
-              See all posts
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-          </Link>
-        </motion.div> */}
+        {posts.length > 0 ? (
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {posts.map((post, index) => (
+              <a
+                key={post.id}
+                href={"https://tripletech.hashnode.dev/" + post.slug}
+                target="_blank"
+                rel="noreferrer"
+                className="lift-on-hover group flex min-h-96 flex-col overflow-hidden rounded-2xl border bg-card"
+              >
+                <div className="relative aspect-video overflow-hidden border-b bg-secondary">
+                  {post.coverImage ? (
+                    <Image
+                      src={post.coverImage}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="article-image object-cover"
+                    />
+                  ) : (
+                    <div className="paper-grid absolute inset-0 bg-primary/8" aria-hidden="true" />
+                  )}
+                </div>
+
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="label text-muted-foreground">Article 0{index + 1}</span>
+                    <ArrowUpRight className="arrow-nudge size-5 text-primary" aria-hidden="true" />
+                  </div>
+                  <h3 className="mt-8 text-xl font-extrabold tracking-tight">{post.title}</h3>
+                  <p className="mt-3 line-clamp-3 text-sm leading-6 text-muted-foreground">
+                    {post.brief}
+                  </p>
+                  <time
+                    className="label mt-auto pt-8 text-muted-foreground"
+                    dateTime={post.dateAdded}
+                  >
+                    {formatDate(post.dateAdded)}
+                  </time>
+                </div>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-8 rounded-2xl border bg-card p-8 sm:flex sm:items-center sm:justify-between">
+            <div>
+              <h3 className="text-xl font-extrabold">The feed is taking a break.</h3>
+              <p className="mt-2 text-muted-foreground">
+                The full writing archive is still available directly on Hashnode.
+              </p>
+            </div>
+            <a
+              href="https://tripletech.hashnode.dev"
+              target="_blank"
+              rel="noreferrer"
+              className="pressable mt-6 inline-flex rounded-xl bg-foreground px-5 py-3 text-sm font-bold text-background sm:mt-0"
+            >
+              Open the archive
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );

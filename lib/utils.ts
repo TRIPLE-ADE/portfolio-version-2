@@ -1,15 +1,9 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
-
 /**
  * Format a date string to a more readable format
  */
 export function formatDate(dateString: string) {
   const date = new Date(dateString);
+  if (Number.isNaN(date.getTime())) return "Recently published";
   return new Intl.DateTimeFormat("en-US", {
     year: "numeric",
     month: "long",

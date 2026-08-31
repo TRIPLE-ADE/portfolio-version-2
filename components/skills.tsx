@@ -1,179 +1,96 @@
-"use client";
+import { Braces, Gauge, Layers3, Smartphone } from "lucide-react";
 
-import React from "react";
-import { motion } from "motion/react";
-import {
-  Blocks,
-  Component,
-  Palette,
-  Library,
-  Construction,
-  Terminal,
-  Globe,
-  Server,
-  Code2,
-  Smartphone,
-} from "lucide-react";
-import { Card } from "./ui/card";
-import { GlowingEffect } from "./ui/glowing-effect";
-
-const skills = [
+const capabilities = [
   {
-    name: "React",
-    category: "Frontend",
-    icon: Component,
-    technologies: ["Hooks", "Context", "Redux", "React Query"],
-  },
-  {
-    name: "Next.js",
-    category: "Frontend",
-    icon: Blocks,
-    technologies: ["App Router", "API Routes", "SSR", "Server Actions", "SEO Optimization"],
-  },
-  {
-    name: "TypeScript",
-    category: "Frontend",
-    icon: Code2,
-    technologies: ["Types", "Interfaces", "Generics", "Utility Types"],
-  },
-  {
-    name: "Tailwind CSS",
-    category: "Frontend",
-    icon: Palette,
-    technologies: ["Responsive Design", "Custom Themes", "Components", "Animations"],
-  },
-  {
-    name: "Expo / React Native",
-    category: "Mobile",
     icon: Smartphone,
-    technologies: ["Cross-Platform", "iOS/Android", "EAS Build", "Native Modules"],
-  },
-  // {
-  //   name: "Golang",
-  //   category: "Backend",
-  //   icon: Code2,
-  //   technologies: ["Goroutines", "Gin/Echo", "Microservices", "gRPC"],
-  // },
-  {
-    name: "PHP",
-    category: "Backend",
-    icon: Server,
-    technologies: ["Laravel", "Rest API", "Composer", "Livewire"],
+    title: "Mobile product engineering",
+    description:
+      "Cross-platform applications built around offline reliability, native constraints, and responsive interaction.",
+    tools: ["React Native", "Expo", "EAS", "Native modules", "App Stores"],
   },
   {
-    name: "Backend Platforms",
-    category: "Backend",
-    icon: Library,
-    technologies: ["Supabase", "Appwrite", "Strapi"],
+    icon: Layers3,
+    title: "Frontend systems",
+    description:
+      "Accessible interfaces and component systems that stay maintainable as products and teams grow.",
+    tools: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
   },
   {
-    name: "Development Tools",
-    category: "Tools",
-    icon: Construction,
-    technologies: ["Git", "VS Code", "npm", "Webpack"],
+    icon: Braces,
+    title: "API & data integration",
+    description:
+      "Reliable server-state, content, authentication, payments, and caching with clear boundaries between UI and services.",
+    tools: [
+      "React Query",
+      "REST APIs",
+      "Sanity",
+      "Clerk",
+      "Stripe",
+      "Upstash Redis",
+      "Supabase",
+      "Appwrite",
+    ],
   },
   {
-    name: "Testing",
-    category: "Tools",
-    icon: Terminal,
-    technologies: ["Jest", "Vite", "React Testing Library", "Playwright"],
-  },
-  {
-    name: "Web Standards",
-    category: "Frontend",
-    icon: Globe,
-    technologies: ["HTML5", "CSS3", "ES6+", "Accessibility"],
+    icon: Gauge,
+    title: "Quality & performance",
+    description:
+      "Measured improvements backed by testing, profiling, caching, and thoughtful delivery workflows.",
+    tools: ["Jest", "Playwright", "GitHub Actions", "Web performance"],
   },
 ];
 
-const categories = ["Frontend", "Mobile", "Backend", "Tools"];
-
 export function SkillsSection() {
   return (
-    <section
-      id="skills"
-      className="flex min-h-screen w-full items-center justify-center py-16 px-4 scroll-mt-10"
-    >
-      <div className="mx-auto max-w-6xl">
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-            Skills & Expertise
-          </h2>
-          <p className="mt-4 text-muted-foreground">
-            Developing robust, scalable technical foundations that power business growth and digital
-            transformation.
+    <section id="expertise" className="section-block border-y bg-foreground text-background">
+      <div className="page-shell">
+        <div className="grid gap-8 lg:grid-cols-[0.72fr_1fr] lg:items-end">
+          <div>
+            <p className="label text-primary">Engineering range</p>
+            <h2 className="mt-4 text-4xl font-extrabold tracking-tighter sm:text-6xl">
+              Product thinking,
+              <br />
+              technical depth.
+            </h2>
+          </div>
+          <p className="max-w-2xl text-lg leading-8 text-background/65 lg:justify-self-end">
+            I specialize in frontend and mobile engineering, turning product requirements into
+            accessible interfaces and reliable React, Next.js, and React Native systems. My backend
+            experience helps me design better integrations and collaborate effectively across the
+            stack.
           </p>
-        </motion.div>
-
-        <div className="mt-16 space-y-16">
-          {categories.map((category, categoryIndex) => (
-            <div key={category}>
-              <motion.h3
-                className="mb-8 text-3xl font-bold text-primary"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-              >
-                {category}
-              </motion.h3>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {skills
-                  .filter((skill) => skill.category === category)
-                  .map((skill, index) => (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="relative group h-full border p-2 md:rounded-2xl md:p-3"
-                    >
-                      <GlowingEffect
-                        blur={0}
-                        borderWidth={2}
-                        spread={80}
-                        glow={true}
-                        disabled={false}
-                        proximity={64}
-                        inactiveZone={0.01}
-                      />
-                      <Card className="group relative h-full overflow-hidden p-6 transition-all hover:border-primary hover:shadow-lg border-0.75 dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
-                        <div className="relative z-10">
-                          <div className="mb-4 flex items-center gap-3">
-                            <span className="text-primary">
-                              {React.createElement(skill.icon, {
-                                size: 24,
-                                className: "transition-transform group-hover:scale-110",
-                              })}
-                            </span>
-                            <h4 className="text-xl font-medium">{skill.name}</h4>
-                          </div>
-                          <div className="mt-4 flex flex-wrap gap-2">
-                            {skill.technologies.map((tech) => (
-                              <span
-                                key={tech}
-                                className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary hover:scale-105 transition-transform"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-primary/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                      </Card>
-                    </motion.div>
-                  ))}
-              </div>
-            </div>
-          ))}
         </div>
+
+        <div className="mt-14 grid border-t border-background/20 md:grid-cols-2">
+          {capabilities.map((capability, index) => {
+            const Icon = capability.icon;
+            return (
+              <article
+                key={capability.title}
+                className="border-b border-background/20 py-8 md:px-8 md:odd:border-r md:odd:pl-0"
+              >
+                <div className="flex items-start justify-between gap-5">
+                  <Icon className="size-7 text-primary" strokeWidth={1.7} aria-hidden="true" />
+                  <span className="label text-background/35">0{index + 1}</span>
+                </div>
+                <h3 className="mt-8 text-2xl font-extrabold tracking-tight">{capability.title}</h3>
+                <p className="mt-3 max-w-lg leading-7 text-background/60">
+                  {capability.description}
+                </p>
+                <ul className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-sm font-semibold text-background/80">
+                  {capability.tools.map((tool) => (
+                    <li key={tool}>· {tool}</li>
+                  ))}
+                </ul>
+              </article>
+            );
+          })}
+        </div>
+
+        <p className="mt-8 max-w-3xl text-sm leading-7 text-background/55">
+          <span className="font-bold text-background/80">Supporting range:</span> Node.js, PHP,
+          Laravel, Linux, and VPS deployment.
+        </p>
       </div>
     </section>
   );

@@ -1,144 +1,125 @@
-"use client";
-
-import { motion } from "motion/react";
 import Image from "next/image";
-import { projects } from "@/data/projects";
-import { ExternalLink, ArrowUpRight } from "lucide-react";
-import { Github } from "@/components/icons";
-import { Button } from "./ui/button";
 import Link from "next/link";
-import { GlowingEffect } from "./ui/glowing-effect";
-import { Card } from "./ui/card";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { projects, type Project } from "@/data/projects";
+
+const toneStyles: Record<Project["tone"], string> = {
+  primary: "bg-primary text-primary-foreground",
+  accent: "bg-accent text-accent-foreground",
+  neutral: "bg-foreground text-background",
+};
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const isFeatured = index === 0;
+
+  return (
+    <article
+      className={
+        "lift-on-hover group relative overflow-hidden rounded-2xl border bg-card " +
+        (isFeatured ? "lg:col-span-2" : "")
+      }
+    >
+      <Link
+        href={"/projects/" + project.id}
+        className={
+          "relative block overflow-hidden bg-secondary " +
+          (isFeatured ? "aspect-16/8" : "aspect-16/10")
+        }
+        aria-label={"Read the " + project.title + " case study"}
+      >
+        <Image
+          src={project.image}
+          alt=""
+          fill
+          sizes={isFeatured ? "(max-width: 1024px) 100vw, 66vw" : "(max-width: 1024px) 100vw, 33vw"}
+          className="project-image object-cover"
+        />
+      </Link>
+
+      <div className="p-6 sm:p-8">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="label text-muted-foreground">
+            0{index + 1} · {project.context}
+          </p>
+          <span
+            className={"rounded-full px-3 py-1.5 text-xs font-bold " + toneStyles[project.tone]}
+          >
+            {project.impact}
+          </span>
+        </div>
+
+        <div className={isFeatured ? "mt-8 grid gap-7 lg:grid-cols-[1fr_0.7fr]" : "mt-7"}>
+          <div>
+            <Link
+              href={"/projects/" + project.id}
+              className="group/title inline-flex items-start gap-2"
+            >
+              <h3 className="text-2xl font-extrabold tracking-[-0.035em] sm:text-3xl">
+                {project.title}
+              </h3>
+              <ArrowUpRight
+                className="arrow-nudge mt-1 size-5 shrink-0 text-primary"
+                aria-hidden="true"
+              />
+            </Link>
+            <p className="mt-4 max-w-2xl leading-7 text-muted-foreground">{project.description}</p>
+          </div>
+
+          <div className={isFeatured ? "lg:border-l lg:pl-7" : "mt-6 border-t pt-5"}>
+            <p className="label text-muted-foreground">Contribution</p>
+            <p className="mt-2 font-bold">{project.role}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{project.impactLabel}</p>
+          </div>
+        </div>
+
+        <div className="mt-7 flex flex-wrap items-end justify-between gap-5 border-t pt-5">
+          <ul className="flex flex-wrap gap-2" aria-label={project.title + " technologies"}>
+            {project.tags.slice(0, isFeatured ? 5 : 4).map((tag) => (
+              <li key={tag} className="rounded-full bg-secondary px-3 py-1.5 text-xs font-semibold">
+                {tag}
+              </li>
+            ))}
+          </ul>
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noreferrer"
+              className="pressable inline-flex items-center gap-2 rounded-lg px-2 py-1 text-sm font-bold text-primary"
+            >
+              Live product
+              <ExternalLink className="size-4" aria-hidden="true" />
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+}
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="py-24 w-full max-w-7xl mx-auto px-6">
-      <div className="flex flex-col items-center text-center mb-16 px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-linear-to-r from-primary to-primary/60"
-        >
-          Case Studies & Solutions
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-muted-foreground text-lg max-w-2xl"
-        >
-          A selection of high-impact products and digital solutions where I&apos;ve solved complex
-          technical challenges and created meaningful value.
-        </motion.p>
-      </div>
+    <section id="projects" className="section-block">
+      <div className="page-shell">
+        <div className="grid gap-8 border-b pb-10 lg:grid-cols-[0.7fr_1fr] lg:items-end">
+          <div>
+            <p className="label text-primary">Selected work</p>
+            <h2 className="mt-4 text-4xl font-extrabold tracking-tighter sm:text-6xl">
+              Proof over promises.
+            </h2>
+          </div>
+          <p className="max-w-2xl text-lg leading-8 text-muted-foreground lg:justify-self-end">
+            Products shaped by privacy constraints, sensitive user journeys, and compressed delivery
+            timelines. Each case study explains the decisions—not just the technology.
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project, index) => (
-          <motion.div
-            key={project.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="relative group h-full border p-2 md:rounded-2xl md:p-3"
-          >
-            <GlowingEffect
-              blur={0}
-              borderWidth={2}
-              spread={80}
-              glow={true}
-              disabled={false}
-              proximity={64}
-              inactiveZone={0.01}
-            />
-            <Card className="group relative h-full overflow-hidden transition-all hover:border-primary hover:shadow-lg border-0.75 dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
-              {/* Image Container */}
-              <div className="relative aspect-video overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <div className="flex gap-3">
-                    {project.github && (
-                      <Button
-                        asChild
-                        size="icon"
-                        variant="secondary"
-                        className="rounded-full shadow-lg"
-                      >
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`View ${project.title} source code on GitHub (opens in new tab)`}
-                        >
-                          <Github className="w-4 h-4" aria-hidden="true" />
-                        </a>
-                      </Button>
-                    )}
-                    {project.link && (
-                      <Button asChild size="icon" className="rounded-full shadow-lg">
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`View live demo of ${project.title} (opens in new tab)`}
-                        >
-                          <ExternalLink className="w-4 h-4" aria-hidden="true" />
-                        </a>
-                      </Button>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6 flex flex-col grow">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-[10px] uppercase font-bold tracking-wider px-2 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <Link
-                  href={`/projects/${project.id}`}
-                  aria-label={`View case study for ${project.title}`}
-                >
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors cursor-pointer">
-                    {project.title}
-                  </h3>
-                </Link>
-                <p className="text-muted-foreground text-sm line-clamp-3 mb-6">
-                  {project.description}
-                </p>
-                <div className="mt-auto">
-                  <Button
-                    asChild
-                    variant="link"
-                    className="p-0 h-auto text-primary font-semibold hover:gap-2 transition-all opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
-                  >
-                    <Link
-                      href={`/projects/${project.id}`}
-                      aria-label={`View full case study for ${project.title}`}
-                    >
-                      View Full Case Study <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </Card>
-          </motion.div>
-        ))}
+        <div className="mt-10 grid gap-5 lg:grid-cols-2">
+          {projects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
+          ))}
+        </div>
       </div>
     </section>
   );

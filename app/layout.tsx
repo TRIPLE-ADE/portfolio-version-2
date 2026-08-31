@@ -1,78 +1,82 @@
-import { Lato } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Manrope } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { ScrollProgress } from "@/components/scroll-progress";
-import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
+import { Navbar } from "@/components/navbar";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
-const lato = Lato({ subsets: ["latin"], weight: ["400"] });
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  display: "swap",
+});
 
-export const metadata = {
-  metadataBase: new URL("https://rasheed-abdulsalam.vercel.app"),
-  titleTemplate: "%s | Rasheed's Portfolio",
-  title: "Rasheed's Portfolio",
-  description: "Portfolio showcasing frontend development skills and projects",
+export const metadata: Metadata = {
+  metadataBase: new URL("https://abdulrasheed-abdulsalam.vercel.app"),
+  title: {
+    default: "Abdulrasheed Abdulsalam — Frontend & Mobile Engineer",
+    template: "%s — Abdulrasheed Abdulsalam",
+  },
+  description:
+    "Frontend and mobile engineer building reliable React, React Native, and on-device AI products from Lagos, Nigeria.",
+  applicationName: "Abdulrasheed Abdulsalam Portfolio",
+  authors: [{ name: "Abdulrasheed Abdulsalam" }],
+  creator: "Abdulrasheed Abdulsalam",
   keywords: [
-    "Abdulrasheed Abdulsalam",
-    "Portfolio",
-    "Frontend Developer",
-    "Web Development",
-    "Technical Writer",
-    "Developer Relations",
-    "JavaScript",
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Mobile Development",
-    "Projects",
-    "Tech Skills",
-    "Developer Portfolio",
-    "Software Engineer",
+    "Frontend Engineer",
+    "Mobile Engineer",
+    "React Native Engineer",
+    "React Engineer",
+    "Next.js Developer",
+    "Nigeria Software Engineer",
+    "On-device AI",
   ],
-  author: "Abdulrasheed Abdulsalam",
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Rasheed's Portfolio",
-    description: "Discover Rasheed's work and projects in software development.",
-    url: "https://rasheed-abdulsalam.vercel.app",
+    title: "Abdulrasheed Abdulsalam — Frontend & Mobile Engineer",
+    description: "Product-minded engineering across mobile, web, and on-device AI.",
+    url: "/",
+    siteName: "Abdulrasheed Abdulsalam",
     type: "website",
-    images: [
-      {
-        url: "/rasheed.PNG",
-        alt: "Rasheed's Portfolio",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    images: [{ url: "/rasheed.PNG", width: 1200, height: 630, alt: "Abdulrasheed Abdulsalam" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rasheed's Portfolio",
-    description: "Discover Rasheed's work and projects in software development.",
+    title: "Abdulrasheed Abdulsalam — Frontend & Mobile Engineer",
+    description: "Product-minded engineering across mobile, web, and on-device AI.",
     images: ["/rasheed.PNG"],
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f7f4ed" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f1116" },
+  ],
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={lato.className}>
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
+      <body className={manrope.variable}>
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:shadow-lg focus:outline-hidden focus:ring-2 focus:ring-ring"
+          className="sr-only fixed top-4 left-4 z-100 rounded-md bg-primary px-4 py-3 font-semibold text-primary-foreground focus:not-sr-only"
         >
           Skip to main content
         </a>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <SmoothScrollProvider>
-            <div className="relative min-h-screen">
-              <Navbar />
-              <ScrollProgress />
-              <main id="main-content">{children}</main>
-              <Footer />
-            </div>
-          </SmoothScrollProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          <main id="main-content">{children}</main>
+          <Footer />
         </ThemeProvider>
         <Analytics />
       </body>

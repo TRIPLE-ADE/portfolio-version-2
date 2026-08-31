@@ -9,6 +9,11 @@ export interface Project {
   link?: string;
   github?: string;
   featured?: boolean;
+  context: string;
+  role: string;
+  impact: string;
+  impactLabel: string;
+  tone: "primary" | "accent" | "neutral";
 }
 
 export const projects: Project[] = [
@@ -18,11 +23,16 @@ export const projects: Project[] = [
     description:
       "An offline-first, privacy-focused AI note-taking Android application with on-device intelligence.",
     longDescription:
-      "A mobile application built with React Native and Expo that runs AI models entirely on-device, ensuring zero data leakage.",
+      "A React Native application that keeps core AI note workflows on-device, reducing cloud dependency while improving privacy and offline reliability.",
+    context: "Independent product",
+    role: "Solo product engineer",
+    impact: "100% offline",
+    impactLabel: "Core AI workflows",
+    tone: "primary",
     content: `
 # Private AI Note (Android)
 
-**Offline-first AI note-taking app with on-device intelligence and zero data leakage**
+**Offline-first AI note-taking with private, on-device intelligence**
 
 🟢 *Works 100% offline — no internet required*
 
@@ -50,7 +60,7 @@ The app allows users to:
 * Record voice notes and transcribe them locally
 * Use AI features **without an internet connection**
 
-No data is sent to external servers. User notes **never leave the device**.
+Core note and AI workflows are designed to run locally, so users can work without sending their notes to a cloud AI service.
 
 ---
 
@@ -130,6 +140,11 @@ It reflects how I approach engineering: **user trust, performance, and practical
       "AI-assisted platform connecting patients with relevant health practitioners through smart diagnosis insights.",
     longDescription:
       "A healthcare platform prototype developed as a capstone project for the Microsoft ADC Student League. It features AI-assisted matching and structured consultation summaries.",
+    context: "Microsoft ADC capstone",
+    role: "Frontend engineer · Team",
+    impact: "2-sided flow",
+    impactLabel: "Patients & practitioners",
+    tone: "accent",
     content: `
 # FindCare
 
@@ -243,6 +258,11 @@ This project shows my ability to:
       "A fintech platform helping students save, invest, and automate tuition payments to ensure educational continuity.",
     longDescription:
       "A financial inclusion platform designed to help students plan, grow, and automate school fee payments. Recognized as a Top 8 finalist at the Squad × GTCO Hackathon.",
+    context: "Squad × GTCO Hackathon",
+    role: "Mobile engineer · Team",
+    impact: "Top 8",
+    impactLabel: "From 100+ teams",
+    tone: "neutral",
     content: `
 # Smart School Finance Hub
 
@@ -346,35 +366,4 @@ It also reflects my interest in building **technology with social impact**.
     link: "https://youtube.com/shorts/_0H_HvfSh0w",
     featured: true,
   },
-  // {
-  //     id: "nexus-saas",
-  //     title: "Nexus AI Platform",
-  //     description: "Built a scalable SaaS platform that automates customer support using LLMs, reducing support tickets by 40%.",
-  //     longDescription: "A comprehensive AI-driven support platform designed for enterprise scale. Built with Next.js, OpenAI, and Pinecone for vector search.",
-  //     tags: ["Next.js", "OpenAI", "TypeScript", "Tailwind CSS"],
-  //     image: "/projects/nexus-ai.png",
-  //     link: "https://nexus-ai.demo",
-  //     github: "https://github.com/TRIPLE-ADE/nexus-ai",
-  //     featured: true,
-  // },
-  // {
-  //     id: "eco-store",
-  //     title: "EcoCommerce Optimizer",
-  //     description: "An e-commerce engine focused on performance and high conversion, achieving sub-second load times.",
-  //     longDescription: "Leveraging ISR and Edge Functions to deliver a lightning-fast shopping experience. Optimized for mobile-first users.",
-  //     tags: ["React", "Hono", "Cloudflare Workers", "Drizzle"],
-  //     image: "/projects/eco-store.png",
-  //     link: "https://eco-store.demo",
-  //     featured: true,
-  // },
-  // {
-  //     id: "fin-dash",
-  //     title: "Financial Insight Dashboard",
-  //     description: "Real-time analytics dashboard for fintech startups to monitor transaction health and fraud patterns.",
-  //     longDescription: "Complex data visualization using Recharts and real-time updates via WebSockets. Helping businesses make data-driven decisions.",
-  //     tags: ["Next.js", "D3.js", "PostgreSQL", "Prisma"],
-  //     image: "/projects/fin-dash.png",
-  //     github: "https://github.com/TRIPLE-ADE/fin-dash",
-  //     featured: true,
-  // }
 ];

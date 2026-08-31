@@ -1,167 +1,243 @@
 @import "tailwindcss";
 
-@plugin 'tailwindcss-animate';
-@plugin '@tailwindcss/typography';
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
-
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
-
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-
   --color-primary: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));
-
   --color-secondary: hsl(var(--secondary));
   --color-secondary-foreground: hsl(var(--secondary-foreground));
-
   --color-muted: hsl(var(--muted));
   --color-muted-foreground: hsl(var(--muted-foreground));
-
   --color-accent: hsl(var(--accent));
   --color-accent-foreground: hsl(var(--accent-foreground));
-
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-
   --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
-
-  --color-chart-1: hsl(var(--chart-1));
-  --color-chart-2: hsl(var(--chart-2));
-  --color-chart-3: hsl(var(--chart-3));
-  --color-chart-4: hsl(var(--chart-4));
-  --color-chart-5: hsl(var(--chart-5));
-
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
-}
-
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
 }
 
 @layer base {
   :root {
-    --background: 42 30% 97%;
-    --foreground: 234 12% 4.2%;
-    --card: 42 30% 97%;
-    --card-foreground: 234 12% 4.2%;
-    --popover: 42 30% 97%;
-    --popover-foreground: 234 12% 4.2%;
-    --primary: 234 8% 12%;
-    --primary-foreground: 42 30% 97%;
-    --secondary: 42 25% 95%;
-    --secondary-foreground: 234 8% 12%;
-    --muted: 42 25% 95%;
-    --muted-foreground: 234 8% 40%;
-    --accent: 42 25% 95%;
-    --accent-foreground: 234 8% 12%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 42 30% 97%;
-    --border: 42 25% 90%;
-    --input: 42 25% 90%;
-    --ring: 234 8% 12%;
-    --radius: 0.5rem;
+    --background: 39 35% 96%;
+    --foreground: 225 17% 11%;
+    --card: 40 38% 98%;
+    --card-foreground: 225 17% 11%;
+    --primary: 225 86% 57%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 39 22% 91%;
+    --secondary-foreground: 225 17% 14%;
+    --muted: 39 18% 91%;
+    --muted-foreground: 225 9% 39%;
+    --accent: 225 86% 57%;
+    --accent-foreground: 0 0% 100%;
+    --border: 225 13% 82%;
+    --ring: 225 86% 57%;
+    color-scheme: light;
   }
 
   .dark {
-    --background: 234 12% 4.2%;
-    --foreground: 42 30% 97%;
-    --card: 234 12% 4.2%;
-    --card-foreground: 42 30% 97%;
-    --popover: 234 12% 4.2%;
-    --popover-foreground: 42 30% 97%;
-    --primary: 42 30% 97%;
-    --primary-foreground: 234 8% 12%;
-    --secondary: 234 5% 16%;
-    --secondary-foreground: 42 30% 97%;
-    --muted: 234 5% 16%;
-    --muted-foreground: 234 6% 65%;
-    --accent: 234 5% 16%;
-    --accent-foreground: 42 30% 97%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 42 30% 97%;
-    --border: 234 5% 16%;
-    --input: 234 5% 16%;
-    --ring: 234 6% 84%;
+    --background: 225 18% 7%;
+    --foreground: 39 24% 93%;
+    --card: 225 17% 10%;
+    --card-foreground: 39 24% 93%;
+    --primary: 218 91% 64%;
+    --primary-foreground: 225 22% 9%;
+    --secondary: 225 14% 15%;
+    --secondary-foreground: 39 24% 93%;
+    --muted: 225 13% 15%;
+    --muted-foreground: 225 8% 66%;
+    --accent: 218 91% 64%;
+    --accent-foreground: 225 22% 9%;
+    --border: 225 12% 22%;
+    --ring: 225 100% 70%;
+    color-scheme: dark;
   }
+
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
 
   html {
     scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
   }
 
-  html.lenis {
-    height: auto;
+  body {
+    min-width: 320px;
+    overflow-x: hidden;
+    background:
+      radial-gradient(circle at 10% 0%, hsl(var(--primary) / 0.08), transparent 28rem),
+      hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   }
 
-  .lenis.lenis-smooth {
-    scroll-behavior: auto;
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
   }
 
-  .lenis.lenis-smooth [data-lenis-prevent] {
-    overscroll-behavior: contain;
+  p {
+    text-wrap: pretty;
   }
 
-  .lenis.lenis-stopped {
-    overflow: hidden;
+  [id] {
+    scroll-margin-top: 7rem;
   }
 
-  .lenis.lenis-scrolling iframe {
-    pointer-events: none;
+  a,
+  button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
+  button:not(:disabled),
+  a[href] {
+    cursor: pointer;
+  }
 
-    .lenis.lenis-smooth {
-      scroll-behavior: auto;
-    }
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 4px;
+  }
 
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
+  ::selection {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
   }
 }
 
-@keyframes spotlight {
-  0% {
-    opacity: 0;
-    transform: translate(-72%, -62%) scale(0.5);
+@layer utilities {
+  .page-shell {
+    width: min(100% - 2rem, 76rem);
+    margin-inline: auto;
   }
-  100% {
+
+  .section-block {
+    padding-block: clamp(5rem, 10vw, 9rem);
+  }
+
+  .label {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .paper-grid {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.45) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.45) 1px, transparent 1px);
+    background-size: 3.5rem 3.5rem;
+    mask-image: linear-gradient(to bottom, black 35%, transparent 94%);
+  }
+
+  .mobile-dialog {
+    overscroll-behavior: contain;
+  }
+
+  .hero-enter {
+    animation: hero-enter 560ms cubic-bezier(0.23, 1, 0.32, 1) both;
+    animation-delay: var(--delay, 0ms);
+  }
+
+  .pressable {
+    transition:
+      transform 150ms cubic-bezier(0.23, 1, 0.32, 1),
+      background-color 150ms ease,
+      border-color 150ms ease,
+      color 150ms ease;
+  }
+
+  .pressable:active {
+    transform: scale(0.97);
+  }
+
+  .text-link {
+    text-decoration-line: underline;
+    text-decoration-color: hsl(var(--primary) / 0.45);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.28em;
+    transition:
+      color 150ms ease,
+      text-decoration-color 150ms ease;
+  }
+
+  .text-link:hover {
+    color: hsl(var(--primary));
+    text-decoration-color: hsl(var(--primary));
+  }
+}
+
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
     opacity: 1;
-    transform: translate(-50%, -40%) scale(1);
+    transform: translateY(0);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lift-on-hover {
+    transition:
+      transform 220ms cubic-bezier(0.23, 1, 0.32, 1),
+      border-color 180ms ease,
+      box-shadow 220ms ease;
+  }
+
+  .lift-on-hover:hover {
+    transform: translateY(-4px);
+    border-color: hsl(var(--primary) / 0.55);
+    box-shadow: 0 24px 60px -36px hsl(var(--foreground) / 0.45);
+  }
+
+  .project-image,
+  .article-image,
+  .arrow-nudge {
+    transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .group:hover .project-image,
+  .group:hover .article-image {
+    transform: scale(1.025);
+  }
+
+  .group\/title:hover .arrow-nudge,
+  .group:hover .arrow-nudge {
+    transform: translate(0.125rem, -0.125rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-enter {
+    animation: none;
+  }
+
+  .pressable,
+  .lift-on-hover,
+  .text-link,
+  .mobile-dialog,
+  .project-image,
+  .article-image,
+  .arrow-nudge {
+    transition: none;
   }
 }

@@ -1,83 +1,80 @@
-"use client";
-
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Reveal } from "@/components/reveal";
-import { ViewIcon } from "lucide-react";
-import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
-import { Globe } from "./ui/globe";
+
+const experience = [
+  {
+    company: "Guaranty Trust",
+    role: "Software Engineer",
+    period: "Jun — Aug 2025",
+    summary: "Rebuilt mobile banking workflows in React Native and improved API-state performance.",
+  },
+  {
+    company: "To-Go Mobility",
+    role: "Frontend / Mobile Engineer",
+    period: "May 2024 — Jan 2025",
+    summary: "Reduced friction across ride discovery, pricing, and booking journeys.",
+  },
+  {
+    company: "SwitchHive",
+    role: "Frontend Engineer",
+    period: "Dec 2023 — Apr 2024",
+    summary: "Delivered a tested operations dashboard for a crypto-commerce platform.",
+  },
+];
 
 export function AboutSection() {
   return (
-    <section
-      id="about"
-      aria-label="About Me section"
-      className="flex min-h-screen w-full items-center overflow-hidden justify-center"
-    >
-      <div className="container mx-auto relative px-4 max-w-6xl grid items-center gap-6 lg:grid-cols-2">
-        <CardContainer className="inter-var">
-          <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/10 dark:bg-black dark:border-white/20 border-black/10 w-auto sm:w-120 h-auto rounded-xl border">
-            <CardItem translateZ="100" className="w-full mt-4">
-              <Image
-                src="/rasheednw.PNG"
-                alt="Abdulrasheed Abdulsalam - Software Engineer"
-                height="1000"
-                width="1000"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover rounded-xl group-hover/card:shadow-xl grayscale-50 group-hover/card:grayscale-0 transition-all duration-500 ease-in-out"
-              />
-            </CardItem>
-          </CardBody>
-        </CardContainer>
-        <div className="flex flex-col text-justify justify-center p-4 lg:p-0 space-y-8 z-10">
-          <Reveal>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">About Me</h2>
-          </Reveal>
-
-          <div className="space-y-4 pr-4 pb-4 rounded-lg bg-transparent backdrop-blur-2xl lg:backdrop-blur-none">
-            <Reveal>
-              <p className="text-lg text-muted-foreground">
-                I am a results-driven Software Engineer with a focus on engineering high-performance
-                web solutions that drive business value and solve complex technical challenges.
-              </p>
-            </Reveal>
-
-            <Reveal>
-              <p className="text-lg text-muted-foreground">
-                With expertise in React, Next.js, and TypeScript, I build scalable architectures and
-                intuitive interfaces that bridge the gap between business objectives and user needs.
-                My approach combines technical excellence with a deep understanding of product
-                growth.
-              </p>
-            </Reveal>
-
-            <Reveal>
-              <p className="text-lg text-muted-foreground">
-                Currently, I am leveraging AI and LLMs to build intelligent automation tools and
-                data-driven applications that enhance productivity and provide actionable insights
-                for modern enterprises.
-              </p>
-            </Reveal>
+    <section id="about" className="section-block">
+      <div className="page-shell grid gap-14 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
+        <div>
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border bg-secondary">
+            <Image
+              src="/rasheed.PNG"
+              alt="Abdulrasheed Abdulsalam"
+              fill
+              sizes="(max-width: 1024px) 100vw, 38vw"
+              className="object-cover"
+            />
           </div>
-          <Reveal>
-            <Button asChild className="inline-flex items-center gap-2" variant="outline">
-              <a
-                href="/Abdulrasheed_Abdulsalam_Software_Engineer.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="View Resume PDF (opens in new tab)"
-              >
-                <ViewIcon className="h-4 w-4" aria-hidden="true" />
-                View Resume
-              </a>
-            </Button>
-          </Reveal>
+          <p className="label mt-4 text-muted-foreground">
+            Lagos, Nigeria · Collaborating globally
+          </p>
         </div>
-        <div
-          aria-hidden="true"
-          className="h-60 md:h-60 flex flex-col items-center absolute -right-60 bottom-0 bg-transparent dark:bg-transparent mt-10"
-        >
-          <Globe />
+
+        <div>
+          <p className="label text-primary">About & experience</p>
+          <h2 className="mt-5 text-4xl font-extrabold tracking-[-0.05em] sm:text-6xl">
+            Calm interfaces.
+            <br />
+            Serious engineering.
+          </h2>
+          <div className="mt-8 max-w-3xl space-y-5 text-lg leading-8 text-muted-foreground">
+            <p>
+              I work across product, design, and engineering to turn ambiguous ideas into focused,
+              dependable experiences. My background spans banking, mobility, healthcare, and
+              privacy-first AI.
+            </p>
+            <p>
+              I care about the details users feel but rarely name: useful defaults, resilient
+              offline paths, clear feedback, accessible interaction, and code that another engineer
+              can own.
+            </p>
+          </div>
+
+          <div className="mt-12 border-t">
+            {experience.map((item) => (
+              <article
+                key={item.company}
+                className="grid gap-3 border-b py-6 sm:grid-cols-[0.9fr_1.4fr_auto] sm:items-start"
+              >
+                <div>
+                  <h3 className="font-extrabold">{item.company}</h3>
+                  <p className="mt-1 text-sm text-primary">{item.role}</p>
+                </div>
+                <p className="text-sm leading-6 text-muted-foreground">{item.summary}</p>
+                <time className="label text-muted-foreground">{item.period}</time>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
