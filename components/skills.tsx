@@ -89,7 +89,7 @@ export function SkillsSection() {
 
         <p className="mt-8 max-w-3xl text-sm leading-7 text-background/55">
           <span className="font-bold text-background/80">Supporting range:</span> Node.js, PHP,
-          Laravel, Linux, and VPS deployment.
+          Linux, and VPS deployment.
         </p>
       </div>
     </section>
