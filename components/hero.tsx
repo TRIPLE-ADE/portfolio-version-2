@@ -3,9 +3,9 @@ import Link from "next/link";
 import { ArrowDownRight, ArrowUpRight, Download, MapPin } from "lucide-react";
 
 const proofPoints = [
-  { value: "100%", label: "On-device AI processing" },
-  { value: "Top 8", label: "Squad × GTCO Hackathon" },
-  { value: "3", label: "Product sectors shipped" },
+  { value: "100K+", label: "GT e-Token Plus reach · product contributed to" },
+  { value: "3rd Place", label: "ICP WCHL25 Nigeria Funnel · Clypr" },
+  { value: "100% offline", label: "Private AI Note core workflows" },
 ];
 
 export function HeroSection() {
@@ -120,9 +120,9 @@ export function HeroSection() {
                 className="object-cover object-top"
               />
               <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/80 via-black/30 to-transparent p-6 pt-24 text-white">
-                <p className="label text-white/70">Current focus</p>
+                <p className="label text-white/70">Engineering focus</p>
                 <p className="mt-2 text-xl font-bold">
-                  Private, on-device intelligence for mobile.
+                  Reliable fintech, web, and mobile products.
                 </p>
               </div>
             </div>

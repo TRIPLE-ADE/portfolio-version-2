@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
       title: project.title,
       description: project.description,
       type: "article",
-      images: [{ url: project.image, alt: project.title }],
+      images: project.image ? [{ url: project.image, alt: project.title }] : undefined,
     },
   };
 }
@@ -43,6 +43,12 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   const project = projects[projectIndex];
   const nextProject = projects[(projectIndex + 1) % projects.length];
   const articleContent = project.content?.replace(/^\s*#.*\n/, "").trim() ?? "";
+  const externalLinks = [
+    project.link ? { label: "Open live product", href: project.link, source: false } : null,
+    project.store ? { label: "View on Google Play", href: project.store, source: false } : null,
+    project.github ? { label: "View source", href: project.github, source: true } : null,
+    project.result ? { label: "View official result", href: project.result, source: false } : null,
+  ].filter((link): link is { label: string; href: string; source: boolean } => Boolean(link));
 
   return (
     <article className="pt-32 sm:pt-36">
@@ -67,45 +73,60 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           <div>
             <p className="text-xl leading-8 text-muted-foreground">{project.longDescription}</p>
             <div className="mt-7 flex flex-wrap gap-3">
-              {project.link && (
+              {externalLinks.map((link, index) => (
                 <a
-                  href={project.link}
+                  key={link.label}
+                  href={link.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="pressable inline-flex min-h-12 items-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-bold text-background hover:bg-primary hover:text-primary-foreground"
+                  className={
+                    "pressable inline-flex min-h-12 items-center gap-2 rounded-xl px-5 py-3 text-sm font-bold " +
+                    (index === 0
+                      ? "bg-foreground text-background hover:bg-primary hover:text-primary-foreground"
+                      : "border bg-card hover:border-primary hover:text-primary")
+                  }
                 >
-                  Open live product
-                  <ExternalLink className="size-4" aria-hidden="true" />
+                  {link.label}
+                  {link.source ? (
+                    <GithubIcon className="size-4" aria-hidden="true" />
+                  ) : (
+                    <ExternalLink className="size-4" aria-hidden="true" />
+                  )}
                   <span className="sr-only">(opens in a new tab)</span>
                 </a>
-              )}
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="pressable inline-flex min-h-12 items-center gap-2 rounded-xl border bg-card px-5 py-3 text-sm font-bold hover:border-primary hover:text-primary"
-                >
-                  View source
-                  <GithubIcon className="size-4" aria-hidden="true" />
-                  <span className="sr-only">(opens in a new tab)</span>
-                </a>
-              )}
+              ))}
             </div>
+            {project.recognition && (
+              <p className="mt-5 border-l-2 border-primary pl-4 text-sm font-bold text-primary">
+                Recognition: {project.recognition}
+              </p>
+            )}
           </div>
         </div>
       </header>
 
       <div className="page-shell">
         <div className="relative aspect-video overflow-hidden rounded-2xl border bg-secondary">
-          <Image
-            src={project.image}
-            alt={project.title + " product interface"}
-            fill
-            priority
-            sizes="(max-width: 1280px) 100vw, 1216px"
-            className="object-cover"
-          />
+          {project.image ? (
+            <Image
+              src={project.image}
+              alt={project.title + " product interface"}
+              fill
+              priority
+              sizes="(max-width: 1280px) 100vw, 1216px"
+              className="object-cover"
+            />
+          ) : (
+            <div className="relative flex h-full items-end p-8 sm:p-12">
+              <div className="paper-grid absolute inset-0" aria-hidden="true" />
+              <div className="relative">
+                <p className="label text-primary">{project.status} project</p>
+                <p className="mt-4 text-4xl font-extrabold tracking-tight sm:text-6xl">
+                  {project.title}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
 
         <dl className="grid border-x border-b bg-card sm:grid-cols-3">
@@ -116,7 +137,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           <div className="border-b p-6 sm:border-r sm:border-b-0">
             <dt className="label text-muted-foreground">Primary outcome</dt>
             <dd className="mt-2 font-extrabold">
-              {project.impact} · {project.impactLabel}
+              {project.outcome} · {project.outcomeLabel}
             </dd>
           </div>
           <div className="p-6">

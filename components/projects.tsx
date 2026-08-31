@@ -1,16 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowUpRight, Award, ExternalLink } from "lucide-react";
 import { projects, type Project } from "@/data/projects";
-
-const toneStyles: Record<Project["tone"], string> = {
-  primary: "bg-primary text-primary-foreground",
-  accent: "bg-accent text-accent-foreground",
-  neutral: "bg-foreground text-background",
-};
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const isFeatured = index === 0;
+  const externalLinks = [
+    project.link ? { label: "Live product", href: project.link } : null,
+    project.store ? { label: "Google Play", href: project.store } : null,
+    project.github ? { label: "Source", href: project.github } : null,
+    project.result ? { label: "Official result", href: project.result } : null,
+  ].filter((link): link is { label: string; href: string } => Boolean(link));
 
   return (
     <article
@@ -27,13 +27,27 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         }
         aria-label={"Read the " + project.title + " case study"}
       >
-        <Image
-          src={project.image}
-          alt=""
-          fill
-          sizes={isFeatured ? "(max-width: 1024px) 100vw, 66vw" : "(max-width: 1024px) 100vw, 33vw"}
-          className="project-image object-cover"
-        />
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt=""
+            fill
+            sizes={
+              isFeatured ? "(max-width: 1024px) 100vw, 66vw" : "(max-width: 1024px) 100vw, 33vw"
+            }
+            className="project-image object-cover"
+          />
+        ) : (
+          <div className="relative flex h-full items-end overflow-hidden p-6 sm:p-8">
+            <div className="paper-grid absolute inset-0" aria-hidden="true" />
+            <div className="relative max-w-md">
+              <p className="label text-primary">Project system</p>
+              <p className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
+                {project.title}
+              </p>
+            </div>
+          </div>
+        )}
       </Link>
 
       <div className="p-6 sm:p-8">
@@ -41,10 +55,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           <p className="label text-muted-foreground">
             0{index + 1} · {project.context}
           </p>
-          <span
-            className={"rounded-full px-3 py-1.5 text-xs font-bold " + toneStyles[project.tone]}
-          >
-            {project.impact}
+          <span className="rounded-full bg-secondary px-3 py-1.5 text-xs font-bold text-secondary-foreground">
+            {project.status}
           </span>
         </div>
 
@@ -63,12 +75,20 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               />
             </Link>
             <p className="mt-4 max-w-2xl leading-7 text-muted-foreground">{project.description}</p>
+            {project.recognition && (
+              <p className="mt-5 flex items-start gap-2 text-sm font-bold text-primary">
+                <Award className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+                <span>{project.recognition}</span>
+              </p>
+            )}
           </div>
 
           <div className={isFeatured ? "lg:border-l lg:pl-7" : "mt-6 border-t pt-5"}>
             <p className="label text-muted-foreground">Contribution</p>
             <p className="mt-2 font-bold">{project.role}</p>
-            <p className="mt-1 text-sm text-muted-foreground">{project.impactLabel}</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {project.outcome} · {project.outcomeLabel}
+            </p>
           </div>
         </div>
 
@@ -80,18 +100,21 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               </li>
             ))}
           </ul>
-          {project.link && (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noreferrer"
-              className="pressable inline-flex items-center gap-2 rounded-lg px-2 py-1 text-sm font-bold text-primary"
-            >
-              Live product
-              <ExternalLink className="size-4" aria-hidden="true" />
-              <span className="sr-only">(opens in a new tab)</span>
-            </a>
-          )}
+          <div className="flex flex-wrap gap-x-4 gap-y-2">
+            {externalLinks.slice(0, 2).map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                className="pressable inline-flex items-center gap-2 rounded-lg px-2 py-1 text-sm font-bold text-primary"
+              >
+                {link.label}
+                <ExternalLink className="size-4" aria-hidden="true" />
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </article>

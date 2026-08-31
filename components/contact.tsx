@@ -13,11 +13,11 @@ export function ContactSection() {
           <div className="relative mt-5 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <h2 className="max-w-4xl text-4xl font-extrabold tracking-[-0.055em] sm:text-6xl lg:text-7xl">
-                Building something that needs to feel clear, fast, and trustworthy?
+                Hiring a product engineer—or building something that needs one?
               </h2>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-primary-foreground/75">
-                I am available for frontend and mobile engineering roles, product collaborations,
-                and focused technical consulting.
+                I’m open to frontend and mobile engineering roles, contract product work, and
+                focused technical collaborations.
               </p>
             </div>
             <a
@@ -25,7 +25,7 @@ export function ContactSection() {
               className="pressable inline-flex min-h-14 items-center justify-center gap-3 rounded-xl bg-primary-foreground px-6 py-4 font-extrabold text-primary"
             >
               <Mail className="size-5" aria-hidden="true" />
-              Send an email
+              Start a conversation
               <ArrowUpRight className="size-5" aria-hidden="true" />
             </a>
           </div>

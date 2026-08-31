@@ -1,23 +1,32 @@
 import Image from "next/image";
 
 const experience = [
+  // {
+  //   company: "PinovX Labs",
+  //   role: "Frontend Engineer",
+  //   period: "Feb 2026 — Present",
+  //   summary:
+  //     "Modernising customer-facing and internal fintech platforms, delivering authenticated OTC and onboarding journeys, and strengthening testing, accessibility, and frontend architecture.",
+  // },
   {
-    company: "Guaranty Trust",
-    role: "Software Engineer",
+    company: "ITR Integrated Technologies",
+    role: "React Native Engineer",
+    period: "Oct 2025 — Present",
+    summary:
+      "Delivering reusable mobile architecture, onboarding, authentication, document, and API workflows for Jaiz Bank client applications.",
+  },
+  {
+    company: "GTCO",
+    role: "Software Engineer Intern",
     period: "Jun — Aug 2025",
-    summary: "Rebuilt mobile banking workflows in React Native and improved API-state performance.",
+    summary:
+      "Contributed across two agile product teams, rebuilding GAPS-Lite workflows in React Native and delivering API and MFA functionality for GT e-Token Plus.",
   },
   {
     company: "To-Go Mobility",
     role: "Frontend / Mobile Engineer",
     period: "May 2024 — Jan 2025",
     summary: "Reduced friction across ride discovery, pricing, and booking journeys.",
-  },
-  {
-    company: "SwitchHive",
-    role: "Frontend Engineer",
-    period: "Dec 2023 — Apr 2024",
-    summary: "Delivered a tested operations dashboard for a crypto-commerce platform.",
   },
 ];
 
@@ -26,7 +35,7 @@ export function AboutSection() {
     <section id="about" className="section-block">
       <div className="page-shell grid gap-14 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
         <div>
-          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border bg-secondary">
+          <div className="relative aspect-4/5 overflow-hidden rounded-2xl border bg-secondary">
             <Image
               src="/rasheed.PNG"
               alt="Abdulrasheed Abdulsalam"
@@ -42,7 +51,7 @@ export function AboutSection() {
 
         <div>
           <p className="label text-primary">About & experience</p>
-          <h2 className="mt-5 text-4xl font-extrabold tracking-[-0.05em] sm:text-6xl">
+          <h2 className="mt-5 text-4xl font-extrabold tracking-tighter sm:text-6xl">
             Calm interfaces.
             <br />
             Serious engineering.
@@ -50,8 +59,8 @@ export function AboutSection() {
           <div className="mt-8 max-w-3xl space-y-5 text-lg leading-8 text-muted-foreground">
             <p>
               I work across product, design, and engineering to turn ambiguous ideas into focused,
-              dependable experiences. My background spans banking, mobility, healthcare, and
-              privacy-first AI.
+              dependable experiences. My current work spans fintech and banking products alongside
+              independent mobile and web development.
             </p>
             <p>
               I care about the details users feel but rarely name: useful defaults, resilient

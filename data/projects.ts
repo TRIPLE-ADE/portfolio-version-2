@@ -5,15 +5,17 @@ export interface Project {
   longDescription?: string;
   content?: string;
   tags: string[];
-  image: string;
+  image?: string;
   link?: string;
   github?: string;
-  featured?: boolean;
+  store?: string;
+  result?: string;
   context: string;
   role: string;
-  impact: string;
-  impactLabel: string;
-  tone: "primary" | "accent" | "neutral";
+  status: "Live" | "Released" | "Prototype";
+  outcome: string;
+  outcomeLabel: string;
+  recognition?: string;
 }
 
 export const projects: Project[] = [
@@ -26,9 +28,9 @@ export const projects: Project[] = [
       "A React Native application that keeps core AI note workflows on-device, reducing cloud dependency while improving privacy and offline reliability.",
     context: "Independent product",
     role: "Solo product engineer",
-    impact: "100% offline",
-    impactLabel: "Core AI workflows",
-    tone: "primary",
+    status: "Released",
+    outcome: "100% offline",
+    outcomeLabel: "Core user-content and AI workflows",
     content: `
 # Private AI Note (Android)
 
@@ -84,7 +86,8 @@ Core note and AI workflows are designed to run locally, so users can work withou
 ### AI & Privacy
 * **On-device AI model** (offline inference)
 * No cloud APIs for AI processing
-* Notes, audio, and AI outputs are processed locally
+* Notes, recordings, and core AI outputs are processed locally
+* Sentry may collect crash and application-performance telemetry, but not note or recording content
 
 This design prioritizes:
 * Privacy by default
@@ -109,8 +112,9 @@ This design prioritizes:
 ## Impact
 * Fully functional **offline AI note-taking**
 * Zero server cost for AI inference
-* Strong privacy guarantees for users
+* A clear privacy boundary between local user content and operational telemetry
 * Shipped and published on the **Google Play Store**
+* Reached the **100+ downloads** band on Google Play
 
 ---
 
@@ -127,11 +131,139 @@ It reflects how I approach engineering: **user trust, performance, and practical
 
 ## Links
 * **Live Demo:** [https://private-ai-note.vercel.app](https://private-ai-note.vercel.app/)
+* **Google Play:** [https://play.google.com/store/apps/details?id=com.tripletech.ainote](https://play.google.com/store/apps/details?id=com.tripletech.ainote)
         `,
     tags: ["React Native", "Expo", "AI", "On-Device ML", "Android"],
-    image: "/projects/ai-note.png",
+    image: "/projects/private-ai-note.webp",
     link: "https://private-ai-note.vercel.app/",
-    featured: true,
+    store: "https://play.google.com/store/apps/details?id=com.tripletech.ainote&hl=en",
+  },
+  {
+    id: "triplex-ecommerce",
+    title: "Triplex E-commerce",
+    description:
+      "A full-stack wearable-commerce experience with CMS-managed inventory, persistent carts, authenticated orders, and verified payments.",
+    longDescription:
+      "An independently developed commerce platform combining a polished storefront with dependable content, identity, cart, payment, and inventory workflows.",
+    context: "Independent product",
+    role: "Solo full-stack product engineer",
+    status: "Live",
+    outcome: "End-to-end commerce",
+    outcomeLabel: "Catalog, cart, checkout, and order history",
+    content: `
+# Triplex E-commerce
+
+**A premium wearable-commerce experience built as a complete product system**
+
+---
+
+## Product Goal
+
+Triplex was built to demonstrate more than a storefront UI. The goal was to create a dependable commerce flow where content editors can manage products, customers can keep their carts across devices, and orders remain consistent through authentication, payment, and inventory changes.
+
+---
+
+## My Role
+
+**Sole product and engineering ownership**
+* Product and interaction design
+* Next.js application architecture
+* Commerce data modelling and Sanity Studio configuration
+* Authentication, cart, checkout, and order-history implementation
+* Stripe payment and webhook integration
+* Deployment, error handling, and production hardening
+
+---
+
+## Engineering Approach
+
+### Content and Identity
+* Sanity manages products, categories, collections, and order content
+* Clerk provides authentication and protected customer order history
+* Dynamic metadata supports product discovery and shareable pages
+
+### Cart and Checkout
+* Zustand and local storage provide immediate client-side cart state
+* Upstash Redis persists carts across authenticated devices
+* Stripe handles checkout, with signed webhooks used to confirm payment events
+
+### Order and Inventory Reliability
+* Prices and stock are revalidated on the server before checkout
+* Duplicate-order protection prevents repeated payment events from creating multiple orders
+* Inventory updates are handled as part of the confirmed order workflow
+
+---
+
+## Why This Project Matters
+
+Triplex demonstrates full-stack product judgment: joining interface quality with content operations, secure identity, payment processing, persistent state, and defensive server-side validation.
+
+---
+
+## Links
+* **Live application:** [https://triplex-ecommerce.vercel.app](https://triplex-ecommerce.vercel.app)
+* **Source:** [https://github.com/TRIPLE-ADE/e-commerce](https://github.com/TRIPLE-ADE/e-commerce)
+        `,
+    tags: ["Next.js", "TypeScript", "Sanity", "Clerk", "Stripe", "Upstash Redis"],
+    image: "/projects/triplex.webp",
+    link: "https://triplex-ecommerce.vercel.app",
+    github: "https://github.com/TRIPLE-ADE/e-commerce",
+  },
+  {
+    id: "clypr",
+    title: "Clypr",
+    description:
+      "A privacy gateway that gives people one communication handle and control over how messages reach them.",
+    longDescription:
+      "A six-person Internet Computer project where I led frontend delivery and project coordination, connecting a React experience to a canister backend.",
+    context: "ICP WCHL25 national round",
+    role: "Frontend engineer & project manager · 6-person team",
+    status: "Live",
+    outcome: "Privacy gateway",
+    outcomeLabel: "One handle with user-controlled message routing",
+    recognition: "3rd Place · ICP WCHL25 Nigeria Funnel",
+    content: `
+# Clypr
+
+**A privacy gateway for controlled, identity-light communication**
+
+---
+
+## Problem
+
+Sharing a phone number or personal account often exposes more identity and access than a conversation requires. Clypr gives users a single communication handle while allowing them to control how messages are routed to their preferred channels.
+
+---
+
+## My Contribution
+
+I worked as the **Frontend Engineer and Project Manager** in a six-person team.
+
+My responsibilities included:
+* Building the React and Vite landing experience
+* Translating the product concept into clear user-facing flows
+* Integrating the frontend with the Internet Computer canister backend
+* Coordinating scope, delivery priorities, and team progress
+
+The other five team members contributed backend, canister, product, and supporting delivery work. The recognition belongs to the team; the responsibilities above describe my personal contribution.
+
+---
+
+## Outcome and Recognition
+
+The team delivered a public Internet Computer deployment and received **Third Place in the Nigeria Funnel of the ICP WCHL25 National Round**.
+
+---
+
+## Links
+* **Live product:** [https://l545n-vqaaa-aaaap-qqd6a-cai.icp0.io](https://l545n-vqaaa-aaaap-qqd6a-cai.icp0.io)
+* **Official result:** [https://dorahacks.io/hackathon/wchl25-national-round/winner](https://dorahacks.io/hackathon/wchl25-national-round/winner)
+* **Project milestones:** [https://dorahacks.io/buidl/30160/milestones](https://dorahacks.io/buidl/30160/milestones)
+        `,
+    tags: ["React", "Vite", "TypeScript", "Internet Computer", "Web3"],
+    image: "/projects/clypr.webp",
+    link: "https://l545n-vqaaa-aaaap-qqd6a-cai.icp0.io",
+    result: "https://dorahacks.io/hackathon/wchl25-national-round/winner",
   },
   {
     id: "findcare",
@@ -142,9 +274,9 @@ It reflects how I approach engineering: **user trust, performance, and practical
       "A healthcare platform prototype developed as a capstone project for the Microsoft ADC Student League. It features AI-assisted matching and structured consultation summaries.",
     context: "Microsoft ADC capstone",
     role: "Frontend engineer · Team",
-    impact: "2-sided flow",
-    impactLabel: "Patients & practitioners",
-    tone: "accent",
+    status: "Prototype",
+    outcome: "2-sided flow",
+    outcomeLabel: "Patients and practitioners",
     content: `
 # FindCare
 
@@ -247,9 +379,8 @@ This project shows my ability to:
 * **Live Demo:** [https://find-care.netlify.app](https://find-care.netlify.app/)
         `,
     tags: ["React", "Next.js", "Tailwind CSS", "AI Integration", "Healthcare"],
-    image: "/projects/find-care.png",
+    image: "/projects/find-care.webp",
     link: "https://find-care.netlify.app/",
-    featured: true,
   },
   {
     id: "smart-school-finance",
@@ -257,12 +388,13 @@ This project shows my ability to:
     description:
       "A fintech platform helping students save, invest, and automate tuition payments to ensure educational continuity.",
     longDescription:
-      "A financial inclusion platform designed to help students plan, grow, and automate school fee payments. Recognized as a Top 8 finalist at the Squad × GTCO Hackathon.",
+      "A financial inclusion prototype designed to help students plan, grow, and automate school-fee payments. It advanced to the ten-team presentation stage of Squad Hackathon 2.0.",
     context: "Squad × GTCO Hackathon",
     role: "Mobile engineer · Team",
-    impact: "Top 8",
-    impactLabel: "From 100+ teams",
-    tone: "neutral",
+    status: "Prototype",
+    outcome: "Functional prototype",
+    outcomeLabel: "Student savings and tuition flows",
+    recognition: "Ten-team presentation stage · Squad Hackathon 2.0",
     content: `
 # Smart School Finance Hub
 
@@ -340,7 +472,7 @@ The platform is designed to **partner directly with schools**, allowing funds to
 ---
 
 ## Impact & Recognition
-* 🏆 **Top 8 out of 100+ teams** at the **Squad × GTCO Hackathon**
+* Advanced to the **ten-team presentation stage** of **Squad Hackathon 2.0**
 * Validated as a scalable fintech-for-education concept
 * Demonstrated direct school partnership payment model
 * Delivered a functional mobile product within a short timeframe
@@ -362,8 +494,7 @@ It also reflects my interest in building **technology with social impact**.
 * 🎥 **YouTube Demo:** [https://youtube.com/shorts/_0H_HvfSh0w](https://youtube.com/shorts/_0H_HvfSh0w)
         `,
     tags: ["React Native", "Expo", "Fintech", "Social Impact", "Hackathon"],
-    image: "/projects/smart-school.jpg",
+    image: "/projects/smart-school.webp",
     link: "https://youtube.com/shorts/_0H_HvfSh0w",
-    featured: true,
   },
 ];
