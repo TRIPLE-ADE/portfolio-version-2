@@ -112,7 +112,7 @@ export function HeroSection() {
           <div className="relative overflow-hidden rounded-[1.7rem] border bg-card p-3 shadow-[0_32px_80px_-48px_hsl(var(--foreground)/0.7)]">
             <div className="relative aspect-4/5 overflow-hidden rounded-[1.2rem] bg-secondary">
               <Image
-                src="/rasheednw.PNG"
+                src="/portrait-1.webp"
                 alt="Abdulrasheed Abdulsalam, frontend and mobile engineer"
                 fill
                 priority

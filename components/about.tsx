@@ -61,7 +61,6 @@ const experience = [
     period: "Dec 2023 — Apr 2024",
     summary: "Delivered a tested operations dashboard for a crypto-commerce platform.",
   },
-
 ];
 
 export function AboutSection() {
