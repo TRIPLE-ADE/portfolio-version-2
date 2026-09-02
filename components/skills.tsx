@@ -13,7 +13,7 @@ const capabilities = [
     title: "Frontend systems",
     description:
       "Accessible interfaces and component systems that stay maintainable as products and teams grow.",
-    tools: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    tools: ["React", "Next.js", "TypeScript", "JavaScript"],
   },
   {
     icon: Braces,
@@ -36,7 +36,7 @@ const capabilities = [
     title: "Quality & performance",
     description:
       "Measured improvements backed by testing, profiling, caching, and thoughtful delivery workflows.",
-    tools: ["Jest", "Playwright", "GitHub Actions", "Web performance"],
+    tools: ["Vitest", "Playwright", "GitHub Actions", "Web performance", "Maestro"],
   },
 ];
 
