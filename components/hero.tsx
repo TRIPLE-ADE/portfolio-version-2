@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowDownRight, ArrowUpRight, Download, MapPin } from "lucide-react";
+import { StopMotionPortrait } from "./stop-motion-portrait";
 
 const proofPoints = [
   { value: "100K+", label: "GT e-Token Plus reach · product contributed to" },
@@ -110,22 +110,7 @@ export function HeroSection() {
             aria-hidden="true"
           />
           <div className="relative overflow-hidden rounded-[1.7rem] border bg-card p-3 shadow-[0_32px_80px_-48px_hsl(var(--foreground)/0.7)]">
-            <div className="relative aspect-4/5 overflow-hidden rounded-[1.2rem] bg-secondary">
-              <Image
-                src="/portrait-1.webp"
-                alt="Abdulrasheed Abdulsalam, frontend and mobile engineer"
-                fill
-                priority
-                sizes="(max-width: 1024px) 90vw, 38vw"
-                className="object-cover object-top"
-              />
-              <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/80 via-black/30 to-transparent p-6 pt-24 text-white">
-                <p className="label text-white/70">Engineering focus</p>
-                <p className="mt-2 text-xl font-bold">
-                  Reliable fintech, web, and mobile products.
-                </p>
-              </div>
-            </div>
+            <StopMotionPortrait />
             <div className="flex items-center justify-between px-2 pt-4 pb-1">
               <span className="label text-muted-foreground">Product engineer</span>
               <Link

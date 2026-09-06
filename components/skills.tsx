@@ -13,7 +13,7 @@ const capabilities = [
     title: "Frontend systems",
     description:
       "Accessible interfaces and component systems that stay maintainable as products and teams grow.",
-    tools: ["React", "Next.js", "TypeScript", "JavaScript"],
+    tools: ["React", "Next.js", "TypeScript", "CSS architecture"],
   },
   {
     icon: Braces,
