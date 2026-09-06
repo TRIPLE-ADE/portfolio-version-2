@@ -54,11 +54,11 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     <article className="pt-32 sm:pt-36">
       <header className="page-shell py-12 sm:py-16">
         <Link
-          href="/#projects"
+          href={project.featuredOnHome ? "/#projects" : "/projects"}
           className="pressable inline-flex items-center gap-2 rounded-lg py-2 text-sm font-bold text-muted-foreground hover:text-primary"
         >
           <ArrowLeft className="size-4" aria-hidden="true" />
-          Back to selected work
+          {project.featuredOnHome ? "Back to selected work" : "Back to project archive"}
         </Link>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_0.75fr] lg:items-end">

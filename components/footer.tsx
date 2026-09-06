@@ -16,6 +16,7 @@ export function Footer() {
             className="text-link"
           >
             GitHub
+            <span className="sr-only">(opens in a new tab)</span>
           </a>
           <a
             href="https://www.linkedin.com/in/rasheed-abdulsalam"
@@ -24,6 +25,7 @@ export function Footer() {
             className="text-link"
           >
             LinkedIn
+            <span className="sr-only">(opens in a new tab)</span>
           </a>
         </nav>
       </div>

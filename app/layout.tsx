@@ -41,13 +41,13 @@ export const metadata: Metadata = {
     url: "/",
     siteName: "Abdulrasheed Abdulsalam",
     type: "website",
-    images: [{ url: "/rasheed.PNG", width: 1200, height: 630, alt: "Abdulrasheed Abdulsalam" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Abdulrasheed Abdulsalam" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Abdulrasheed Abdulsalam — Frontend & Mobile Engineer",
     description: "Product-minded engineering across mobile, web, and on-device AI.",
-    images: ["/rasheed.PNG"],
+    images: ["/og-image.png"],
   },
 };
 
