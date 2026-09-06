@@ -1,31 +1,45 @@
 import { Suspense } from "react";
-import { fetchBlogPosts } from "@/lib/hashnode";
-import dynamic from "next/dynamic";
+import { AboutSection } from "@/components/about";
+import BlogSection from "@/components/blog";
+import { ContactSection } from "@/components/contact";
 import HeroSection from "@/components/hero";
+import ProjectsSection from "@/components/projects";
+import { RecognitionSection } from "@/components/recognition";
+import SkillsSection from "@/components/skills";
 
-// Dynamic imports (lazy loading)
-const AboutSection = dynamic(() => import("@/components/about").then((mod) => mod.AboutSection));
-const SkillsSection = dynamic(() => import("@/components/skills"));
-const ContactSection = dynamic(() =>
-  import("@/components/contact").then((mod) => mod.ContactSection),
-);
-const BlogPreviewSection = dynamic(() => import("@/components/blog"));
-const ProjectsSection = dynamic(() => import("@/components/projects"));
-
-export default async function Home() {
-  const { posts } = await fetchBlogPosts(6);
+function WritingFallback() {
   return (
-    <div className="flex items-center justify-center flex-col">
+    <section
+      className="section-block border-t"
+      aria-label="Loading articles"
+      aria-busy="true"
+      aria-live="polite"
+    >
+      <div className="page-shell">
+        <span className="sr-only">Loading articles…</span>
+        <div className="h-8 w-40 rounded bg-muted" aria-hidden="true" />
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {[0, 1, 2].map((item) => (
+            <div key={item} className="h-48 rounded-lg bg-muted" aria-hidden="true" />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function Home() {
+  return (
+    <>
       <HeroSection />
-      <AboutSection />
       <ProjectsSection />
+      <RecognitionSection />
       <SkillsSection />
-      <Suspense
-        fallback={<div className="h-96 flex items-center justify-center">Loading Blog...</div>}
-      >
-        <BlogPreviewSection posts={posts} />
+      <AboutSection />
+      <Suspense fallback={<WritingFallback />}>
+        <BlogSection />
       </Suspense>
       <ContactSection />
-    </div>
+    </>
   );
 }

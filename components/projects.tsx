@@ -1,144 +1,170 @@
-"use client";
-
-import { motion } from "motion/react";
 import Image from "next/image";
-import { projects } from "@/data/projects";
-import { ExternalLink, ArrowUpRight } from "lucide-react";
-import { Github } from "@/components/icons";
-import { Button } from "./ui/button";
 import Link from "next/link";
-import { GlowingEffect } from "./ui/glowing-effect";
-import { Card } from "./ui/card";
+import { ArrowUpRight, Award, ExternalLink } from "lucide-react";
+import { homepageProjects, projects, type Project } from "@/data/projects";
+
+export function ProjectCard({
+  project,
+  index,
+  compact = false,
+}: {
+  project: Project;
+  index: number;
+  compact?: boolean;
+}) {
+  const isWide = !compact && project.cardSize === "wide";
+  const externalLinks = [
+    project.link ? { label: "Live product", href: project.link } : null,
+    project.store ? { label: "Google Play", href: project.store } : null,
+    project.github ? { label: "Source", href: project.github } : null,
+    project.result ? { label: "Official result", href: project.result } : null,
+  ].filter((link): link is { label: string; href: string } => Boolean(link));
+
+  return (
+    <article
+      className={
+        "lift-on-hover group relative overflow-hidden rounded-2xl border bg-card " +
+        (isWide ? "lg:col-span-2" : "")
+      }
+    >
+      <Link
+        href={"/projects/" + project.id}
+        className={
+          "relative block overflow-hidden bg-secondary " + (isWide ? "aspect-16/8" : "aspect-16/10")
+        }
+        aria-label={"Read the " + project.title + " case study"}
+      >
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt=""
+            fill
+            sizes={
+              isWide ? "(max-width: 1280px) 100vw, 1216px" : "(max-width: 1024px) 100vw, 608px"
+            }
+            className="project-image object-cover"
+          />
+        ) : (
+          <div className="relative flex h-full items-end overflow-hidden p-6 sm:p-8">
+            <div className="paper-grid absolute inset-0" aria-hidden="true" />
+            <div className="relative max-w-md">
+              <p className="label text-primary">Project system</p>
+              <p className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
+                {project.title}
+              </p>
+            </div>
+          </div>
+        )}
+      </Link>
+
+      <div className="p-6 sm:p-8">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="label text-muted-foreground">
+            0{index + 1} · {project.context}
+          </p>
+          <span className="rounded-full bg-secondary px-3 py-1.5 text-xs font-bold text-secondary-foreground">
+            {project.status}
+          </span>
+        </div>
+
+        <div className={isWide ? "mt-8 grid gap-7 lg:grid-cols-[1fr_0.7fr]" : "mt-7"}>
+          <div>
+            <Link
+              href={"/projects/" + project.id}
+              className="group/title inline-flex items-start gap-2"
+            >
+              <h3 className="text-2xl font-extrabold tracking-[-0.035em] sm:text-3xl">
+                {project.title}
+              </h3>
+              <ArrowUpRight
+                className="arrow-nudge mt-1 size-5 shrink-0 text-primary"
+                aria-hidden="true"
+              />
+            </Link>
+            <p className="mt-4 max-w-2xl leading-7 text-muted-foreground">{project.description}</p>
+            {project.recognition && (
+              <p className="mt-5 flex items-start gap-2 text-sm font-bold text-primary">
+                <Award className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+                <span>{project.recognition}</span>
+              </p>
+            )}
+          </div>
+
+          <div className={isWide ? "lg:border-l lg:pl-7" : "mt-6 border-t pt-5"}>
+            <p className="label text-muted-foreground">Contribution</p>
+            <p className="mt-2 font-bold">{project.role}</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {project.outcome} · {project.outcomeLabel}
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-7 flex flex-wrap items-end justify-between gap-5 border-t pt-5">
+          <ul className="flex flex-wrap gap-2" aria-label={project.title + " technologies"}>
+            {project.tags.slice(0, isWide ? 5 : 4).map((tag) => (
+              <li key={tag} className="rounded-full bg-secondary px-3 py-1.5 text-xs font-semibold">
+                {tag}
+              </li>
+            ))}
+          </ul>
+          <div className="flex flex-wrap gap-x-4 gap-y-2">
+            {externalLinks.slice(0, 2).map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                className="pressable inline-flex items-center gap-2 rounded-lg px-2 py-1 text-sm font-bold text-primary"
+              >
+                {link.label}
+                <ExternalLink className="size-4" aria-hidden="true" />
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="py-24 w-full max-w-7xl mx-auto px-6">
-      <div className="flex flex-col items-center text-center mb-16 px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-linear-to-r from-primary to-primary/60"
-        >
-          Case Studies & Solutions
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-muted-foreground text-lg max-w-2xl"
-        >
-          A selection of high-impact products and digital solutions where I&apos;ve solved complex
-          technical challenges and created meaningful value.
-        </motion.p>
-      </div>
+    <section id="projects" className="section-block">
+      <div className="page-shell">
+        <div className="grid gap-8 border-b pb-10 lg:grid-cols-[0.7fr_1fr] lg:items-end">
+          <div>
+            <p className="label text-primary">Selected work</p>
+            <h2 className="mt-4 text-4xl font-extrabold tracking-tighter sm:text-6xl">
+              Proof over promises.
+            </h2>
+          </div>
+          <p className="max-w-2xl text-lg leading-8 text-muted-foreground lg:justify-self-end">
+            Products shaped by privacy constraints, sensitive user journeys, and compressed delivery
+            timelines. Each case study explains the decisions not just the technology.
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project, index) => (
-          <motion.div
-            key={project.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="relative group h-full border p-2 md:rounded-2xl md:p-3"
+        <div className="mt-10 grid gap-5 lg:grid-cols-2">
+          {homepageProjects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
+          ))}
+        </div>
+
+        <div className="mt-8 flex flex-col gap-5 border-t pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-xl text-sm leading-6 text-muted-foreground">
+            Looking for earlier capstones and hackathon prototypes? The archive includes all{" "}
+            {projects.length}
+            project case studies.
+          </p>
+          <Link
+            href="/projects"
+            className="pressable inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-xl border bg-card px-5 py-3 text-sm font-bold hover:border-primary hover:text-primary"
           >
-            <GlowingEffect
-              blur={0}
-              borderWidth={2}
-              spread={80}
-              glow={true}
-              disabled={false}
-              proximity={64}
-              inactiveZone={0.01}
-            />
-            <Card className="group relative h-full overflow-hidden transition-all hover:border-primary hover:shadow-lg border-0.75 dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
-              {/* Image Container */}
-              <div className="relative aspect-video overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <div className="flex gap-3">
-                    {project.github && (
-                      <Button
-                        asChild
-                        size="icon"
-                        variant="secondary"
-                        className="rounded-full shadow-lg"
-                      >
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`View ${project.title} source code on GitHub (opens in new tab)`}
-                        >
-                          <Github className="w-4 h-4" aria-hidden="true" />
-                        </a>
-                      </Button>
-                    )}
-                    {project.link && (
-                      <Button asChild size="icon" className="rounded-full shadow-lg">
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`View live demo of ${project.title} (opens in new tab)`}
-                        >
-                          <ExternalLink className="w-4 h-4" aria-hidden="true" />
-                        </a>
-                      </Button>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6 flex flex-col grow">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-[10px] uppercase font-bold tracking-wider px-2 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <Link
-                  href={`/projects/${project.id}`}
-                  aria-label={`View case study for ${project.title}`}
-                >
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors cursor-pointer">
-                    {project.title}
-                  </h3>
-                </Link>
-                <p className="text-muted-foreground text-sm line-clamp-3 mb-6">
-                  {project.description}
-                </p>
-                <div className="mt-auto">
-                  <Button
-                    asChild
-                    variant="link"
-                    className="p-0 h-auto text-primary font-semibold hover:gap-2 transition-all opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
-                  >
-                    <Link
-                      href={`/projects/${project.id}`}
-                      aria-label={`View full case study for ${project.title}`}
-                    >
-                      View Full Case Study <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </Card>
-          </motion.div>
-        ))}
+            View all projects
+            <ArrowUpRight className="size-4" aria-hidden="true" />
+          </Link>
+        </div>
       </div>
     </section>
   );

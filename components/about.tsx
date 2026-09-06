@@ -1,83 +1,161 @@
-"use client";
+import { MapPin } from "lucide-react";
 
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Reveal } from "@/components/reveal";
-import { ViewIcon } from "lucide-react";
-import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
-import { Globe } from "./ui/globe";
+const principles = [
+  {
+    number: "01",
+    title: "Offline-first resilience",
+    description:
+      "Local caching, optimistic mutations, and resilient state sync shaped for unstable real-world connectivity.",
+  },
+  {
+    number: "02",
+    title: "Sub-100ms perceived speed",
+    description:
+      "Zero layout shift, proactive prefetching, and fluid 60fps touch interactions on web and mobile.",
+  },
+  {
+    number: "03",
+    title: "Predictable system boundaries",
+    description:
+      "Clean separation of UI from server state, strict TypeScript contracts, and maintainable component APIs.",
+  },
+  {
+    number: "04",
+    title: "Accessibility by default",
+    description:
+      "Tested contrast standards, complete keyboard navigation, and first-class native screen-reader parity.",
+  },
+];
+
+const experience = [
+  // {
+  //   company: "PinovX Labs",
+  //   role: "Frontend Engineer",
+  //   period: "Feb 2026 — Present",
+  //   summary:
+  //     "Modernising customer-facing and internal fintech platforms, delivering authenticated OTC and onboarding journeys, and strengthening testing, accessibility, and frontend architecture.",
+  // },
+  {
+    company: "ITR Integrated Technologies",
+    role: "React Native Engineer",
+    period: "Oct 2025 — Present",
+    summary:
+      "Delivering reusable mobile architecture, onboarding, authentication, document, and API workflows for Jaiz Bank client applications.",
+  },
+  {
+    company: "GTCO",
+    role: "Software Engineer Intern",
+    period: "Jun — Aug 2025",
+    summary:
+      "Contributed across two agile product teams, rebuilding GAPS-Lite workflows in React Native and delivering API and MFA functionality for GT e-Token Plus.",
+  },
+  {
+    company: "To-Go Mobility",
+    role: "Frontend Engineer",
+    period: "May 2024 — Jan 2025",
+    summary: "Reduced friction across ride discovery, pricing, and booking journeys.",
+  },
+  {
+    company: "SwitchHive",
+    role: "Frontend Engineer",
+    period: "Dec 2023 — Apr 2024",
+    summary: "Delivered a tested operations dashboard for a crypto-commerce platform.",
+  },
+];
 
 export function AboutSection() {
   return (
-    <section
-      id="about"
-      aria-label="About Me section"
-      className="flex min-h-screen w-full items-center overflow-hidden justify-center"
-    >
-      <div className="container mx-auto relative px-4 max-w-6xl grid items-center gap-6 lg:grid-cols-2">
-        <CardContainer className="inter-var">
-          <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/10 dark:bg-black dark:border-white/20 border-black/10 w-auto sm:w-120 h-auto rounded-xl border">
-            <CardItem translateZ="100" className="w-full mt-4">
-              <Image
-                src="/rasheednw.PNG"
-                alt="Abdulrasheed Abdulsalam - Software Engineer"
-                height="1000"
-                width="1000"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover rounded-xl group-hover/card:shadow-xl grayscale-50 group-hover/card:grayscale-0 transition-all duration-500 ease-in-out"
-              />
-            </CardItem>
-          </CardBody>
-        </CardContainer>
-        <div className="flex flex-col text-justify justify-center p-4 lg:p-0 space-y-8 z-10">
-          <Reveal>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">About Me</h2>
-          </Reveal>
+    <section id="about" className="section-block">
+      <div className="page-shell grid gap-14 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <div className="rounded-3xl border bg-card p-6 shadow-sm sm:p-8">
+            <div className="flex items-center justify-between gap-4 border-b pb-5">
+              <span className="label flex items-center gap-2 text-primary">
+                <span className="relative flex size-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+                  <span className="relative inline-flex size-2 rounded-full bg-primary" />
+                </span>
+                Engineering principles
+              </span>
+              <span className="label text-muted-foreground">Standards</span>
+            </div>
 
-          <div className="space-y-4 pr-4 pb-4 rounded-lg bg-transparent backdrop-blur-2xl lg:backdrop-blur-none">
-            <Reveal>
-              <p className="text-lg text-muted-foreground">
-                I am a results-driven Software Engineer with a focus on engineering high-performance
-                web solutions that drive business value and solve complex technical challenges.
-              </p>
-            </Reveal>
+            <p className="mt-5 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+              Built for real constraints, not just happy paths.
+            </p>
 
-            <Reveal>
-              <p className="text-lg text-muted-foreground">
-                With expertise in React, Next.js, and TypeScript, I build scalable architectures and
-                intuitive interfaces that bridge the gap between business objectives and user needs.
-                My approach combines technical excellence with a deep understanding of product
-                growth.
-              </p>
-            </Reveal>
+            <div className="mt-6 space-y-5">
+              {principles.map((principle) => (
+                <div key={principle.number} className="flex gap-4">
+                  <span className="label mt-0.5 text-xs font-mono font-bold text-primary">
+                    {principle.number}
+                  </span>
+                  <div>
+                    <h3 className="text-sm font-bold text-foreground">{principle.title}</h3>
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                      {principle.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-            <Reveal>
-              <p className="text-lg text-muted-foreground">
-                Currently, I am leveraging AI and LLMs to build intelligent automation tools and
-                data-driven applications that enhance productivity and provide actionable insights
-                for modern enterprises.
-              </p>
-            </Reveal>
+            <div className="mt-8 border-t pt-5">
+              <p className="label text-xs text-muted-foreground">Core runtime stack</p>
+              <div className="mt-2.5 flex flex-wrap gap-1.5">
+                {["React", "Next.js", "React Native", "Expo", "TypeScript"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-lg border bg-secondary/60 px-2.5 py-1 text-xs font-semibold text-secondary-foreground"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
-          <Reveal>
-            <Button asChild className="inline-flex items-center gap-2" variant="outline">
-              <a
-                href="/Abdulrasheed_Abdulsalam_Software_Engineer.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="View Resume PDF (opens in new tab)"
-              >
-                <ViewIcon className="h-4 w-4" aria-hidden="true" />
-                View Resume
-              </a>
-            </Button>
-          </Reveal>
+
+          <p className="label mt-4 flex items-center gap-1.5 px-1 text-xs text-muted-foreground">
+            <MapPin className="size-3.5 text-primary" aria-hidden="true" />
+            Lagos, Nigeria (UTC+1) · Collaborating globally
+          </p>
         </div>
-        <div
-          aria-hidden="true"
-          className="h-60 md:h-60 flex flex-col items-center absolute -right-60 bottom-0 bg-transparent dark:bg-transparent mt-10"
-        >
-          <Globe />
+
+        <div>
+          <p className="label text-primary">About & experience</p>
+          <h2 className="mt-5 text-4xl font-extrabold tracking-tighter sm:text-6xl">
+            Calm interfaces.
+            <br />
+            Serious engineering.
+          </h2>
+          <div className="mt-8 max-w-3xl space-y-5 text-lg leading-8 text-muted-foreground">
+            <p>
+              I work across product, design, and engineering to turn ambiguous ideas into focused,
+              dependable experiences. My current work spans fintech and banking products alongside
+              independent mobile and web development.
+            </p>
+            <p>
+              I care about the details users feel but rarely name: useful defaults, resilient
+              offline paths, clear feedback, accessible interaction, and code that another engineer
+              can own.
+            </p>
+          </div>
+
+          <div className="mt-12 border-t">
+            {experience.map((item) => (
+              <article
+                key={item.company}
+                className="grid gap-3 border-b py-6 sm:grid-cols-[0.9fr_1.4fr_auto] sm:items-start"
+              >
+                <div>
+                  <h3 className="font-extrabold">{item.company}</h3>
+                  <p className="mt-1 text-sm text-primary">{item.role}</p>
+                </div>
+                <p className="text-sm leading-6 text-muted-foreground">{item.summary}</p>
+                <time className="label text-muted-foreground">{item.period}</time>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#F7F4ED"/>
+  <path d="M0 63H1200M0 126H1200M0 189H1200M0 252H1200M0 315H1200M0 378H1200M0 441H1200M0 504H1200M0 567H1200M63 0V630M126 0V630M189 0V630M252 0V630M315 0V630M378 0V630M441 0V630M504 0V630M567 0V630M630 0V630M693 0V630M756 0V630M819 0V630M882 0V630M945 0V630M1008 0V630M1071 0V630M1134 0V630" stroke="#101317" stroke-opacity="0.06"/>
+  <rect x="774" y="-42" width="468" height="714" rx="234" fill="#4F8EF7"/>
+  <circle cx="945" cy="314" r="170" fill="#101317" fill-opacity="0.92"/>
+  <circle cx="945" cy="314" r="126" stroke="#F7F4ED" stroke-opacity="0.28" stroke-width="2"/>
+  <path d="M945 144V484M775 314H1115M825 194L1065 434M1065 194L825 434" stroke="#F7F4ED" stroke-opacity="0.16" stroke-width="2"/>
+  <circle cx="1088" cy="105" r="10" fill="#F7F4ED"/>
+  <circle cx="1118" cy="105" r="5" fill="#101317" fill-opacity="0.75"/>
+  <text x="78" y="108" fill="#4F8EF7" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="3">ABDULRASHEED ABDULSALAM</text>
+  <rect x="78" y="137" width="72" height="5" rx="2.5" fill="#101317"/>
+  <text x="78" y="254" fill="#101317" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="800" letter-spacing="-3">Frontend &amp;</text>
+  <text x="78" y="334" fill="#101317" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="800" letter-spacing="-3">mobile engineer.</text>
+  <text x="78" y="402" fill="#101317" fill-opacity="0.62" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400">I engineer reliable products for web and mobile.</text>
+  <path d="M78 535H514" stroke="#101317" stroke-opacity="0.18"/>
+  <text x="78" y="574" fill="#101317" fill-opacity="0.55" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" letter-spacing="2">REACT · NEXT.JS · REACT NATIVE · TYPESCRIPT</text>
+</svg>

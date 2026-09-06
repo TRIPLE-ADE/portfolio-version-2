@@ -1,7 +1,9 @@
 {
-  "name": "",
-  "short_name": "",
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "name": "Abdulrasheed Abdulsalam — Portfolio",
+  "short_name": "Abdulrasheed",
+  "description": "Portfolio of Abdulrasheed Abdulsalam, a frontend and mobile engineer.",
+  "start_url": "/",
+  "theme_color": "#f7f4ed",
+  "background_color": "#f7f4ed",
   "display": "standalone"
 }

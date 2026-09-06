@@ -1,80 +1,35 @@
-"use client";
-
-import { motion } from "motion/react";
-import { Mail } from "lucide-react";
-import { Github, Linkedin } from "@/components/icons";
-import Image from "next/image";
-
-const socialLinks = [
-  {
-    name: "GitHub",
-    url: "https://github.com/TRIPLE-ADE",
-    icon: Github,
-  },
-  {
-    name: "LinkedIn",
-    url: "https://linkedin.com/in/abdulsalam-dev",
-    icon: Linkedin,
-  },
-  {
-    name: "X",
-    url: "https://x.com/Triple123A",
-    icon: "x",
-  },
-  {
-    name: "Email",
-    url: "mailto:adetomiwaabdul@gmail.com",
-    icon: Mail,
-  },
-];
+import { ArrowUpRight, Mail } from "lucide-react";
 
 export function ContactSection() {
   return (
-    <section id="contact" className="flex w-full justify-center py-16 scroll-mt-10">
-      <div className="container max-w-2xl mx-auto px-4">
-        {/* Social Links Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="flex flex-col items-center"
-        >
-          <div className="w-full text-center">
-            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">Let's Connect</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Whether it's for a potential project, a collaboration, or just to say hi, you can find
-              me on these platforms. Let's stay in touch!
-            </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-4">
-              {socialLinks.map((link) => (
-                <motion.a
-                  key={link.name}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-primary/10 px-4 py-3 text-primary transition-all hover:bg-primary/20 hover:shadow-md focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  aria-label={`Visit my ${link.name} profile`}
-                >
-                  {link.icon === "x" ? (
-                    <Image
-                      src="/x.svg"
-                      alt="X Logo"
-                      width={20}
-                      height={20}
-                      className="h-5 w-5 dark:invert"
-                    />
-                  ) : (
-                    <link.icon className="h-5 w-5" />
-                  )}
-                  <span className="text-sm font-medium">{link.name}</span>
-                </motion.a>
-              ))}
+    <section id="contact" className="section-block">
+      <div className="page-shell">
+        <div className="relative overflow-hidden rounded-4xl bg-primary px-6 py-12 text-primary-foreground sm:px-10 sm:py-16 lg:px-16">
+          <div
+            className="pointer-events-none absolute -right-24 -bottom-32 size-96 rounded-full border-[4rem] border-white/10"
+            aria-hidden="true"
+          />
+          <p className="label text-primary-foreground/65">Start a conversation</p>
+          <div className="relative mt-5 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div>
+              <h2 className="max-w-4xl text-4xl font-extrabold tracking-[-0.055em] sm:text-6xl lg:text-7xl">
+                Hiring a product engineer or building something that needs one?
+              </h2>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-primary-foreground/75">
+                I’m open to frontend and mobile engineering roles, contract product work, and
+                focused technical collaborations.
+              </p>
             </div>
+            <a
+              href="mailto:abdulrasheedabdulsalam13603@gmail.com"
+              className="pressable inline-flex min-h-14 items-center justify-center gap-3 rounded-xl bg-primary-foreground px-6 py-4 font-extrabold text-primary"
+            >
+              <Mail className="size-5" aria-hidden="true" />
+              Start a conversation
+              <ArrowUpRight className="size-5" aria-hidden="true" />
+            </a>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -1,11 +1,33 @@
+import Link from "next/link";
+
 export function Footer() {
-  const currentYear = new Date().getFullYear();
   return (
-    <footer className="border-t py-6">
-      <div className="container flex items-center justify-center px-4">
-        <p className="text-sm text-muted-foreground">
-          © {currentYear} Rasheed. All rights reserved.
-        </p>
+    <footer className="border-t py-8">
+      <div className="page-shell flex flex-col gap-5 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        <p>© {new Date().getFullYear()} Abdulrasheed Abdulsalam.</p>
+        <nav className="flex flex-wrap gap-5" aria-label="Footer navigation">
+          <Link href="/#top" className="text-link">
+            Back to top
+          </Link>
+          <a
+            href="https://github.com/TRIPLE-ADE"
+            target="_blank"
+            rel="noreferrer"
+            className="text-link"
+          >
+            GitHub
+            <span className="sr-only">(opens in a new tab)</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/rasheed-abdulsalam"
+            target="_blank"
+            rel="noreferrer"
+            className="text-link"
+          >
+            LinkedIn
+            <span className="sr-only">(opens in a new tab)</span>
+          </a>
+        </nav>
       </div>
     </footer>
   );
