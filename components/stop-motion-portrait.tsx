@@ -3,10 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
-const FRAMES = ["/portrait-1.webp", "/portrait-2.webp", "/portrait-3.webp"];
+const FRAMES = ["/portrait-1.webp", "/portrait-2.webp"];
 
 // Ping-pong sequence creates a smooth oscillating motion without sudden jump cuts
-const SEQUENCE = [0, 1, 2, 1];
+const SEQUENCE = [0, 1];
 
 export function StopMotionPortrait() {
   const [seqIndex, setSeqIndex] = useState(0);
